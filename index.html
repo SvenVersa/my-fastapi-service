@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiverse of Madness // Issue #1 Metahuman Classified</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Comic Book Cover & Masthead -->
+    <header class="comic-masthead">
+        <div class="comic-corner-box">
+            <span class="cc-price">75¢</span>
+            <span class="cc-code">APPROVED BY THE COMICS CODE AUTHORITY</span>
+            <span class="cc-issue">ISSUE #01</span>
+        </div>
+
+        <div class="masthead-center">
+            <div class="hero-subhead">★ ALL-NEW, ALL-DIFFERENT METAHUMAN DOSSIERS ★</div>
+            <h1 class="comic-logo">OMNIVERSE</h1>
+            <div class="banner-tag">SPECIAL EXPANDED ARCHIVE EDITION</div>
+        </div>
+
+        <div class="mode-toggles">
+            <button id="view-mode-btn" class="comic-toggle-btn">📖 SWITCH TO CONTINUOUS STRIP</button>
+        </div>
+    </header>
+
+    <!-- Comic Control Strip -->
+    <section class="comic-nav-deck">
+        <div class="search-bubble">
+            <span class="speech-tail"></span>
+            <input type="text" id="search-input" placeholder="SEARCH HERO, SECRET ID, SQUAD OR POWERS..." autocomplete="off">
+            <button id="reset-btn" class="action-btn">RESET!</button>
+        </div>
+
+        <div class="squad-tabs">
+            <button class="tab-btn active" data-filter="ALL">ALL PAGES</button>
+            <button class="tab-btn" data-filter="AVENGERS">AVENGERS</button>
+            <button class="tab-btn" data-filter="JUSTICE LEAGUE">JUSTICE LEAGUE</button>
+            <button class="tab-btn" data-filter="X-MEN">X-MEN</button>
+            <button class="tab-btn" data-filter="GLOBAL">GLOBAL / INDIE</button>
+        </div>
+    </section>
+
+    <!-- Reader Page Container -->
+    <main class="comic-book-viewport">
+        
+        <!-- Paginator Bar (For Page-by-Page Mode) -->
+        <div class="page-flipper" id="page-flipper">
+            <button id="prev-page" class="flip-btn">◀ PREVIOUS PAGE</button>
+            <div class="page-indicator" id="page-indicator">PAGE 1 OF 10</div>
+            <button id="next-page" class="flip-btn">NEXT PAGE ▶</button>
+        </div>
+
+        <!-- The Actual Comic Sheet Container -->
+        <div id="comic-stage" class="comic-page-sheet">
+            <div id="loading" class="narrative-box splash-load">
+                💥 LOADING MULTIVERSE STRIP DATASTREAM... HOLD ONTO YOUR CAPE!
+            </div>
+        </div>
+    </main>
+
+    <!-- Comic Centerfold Splash Dossier (Modal) -->
+    <div id="detail-modal" class="modal hidden">
+        <div class="modal-comic-frame">
+            <button id="close-modal" class="close-comic-btn">✖ RESUME READING</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

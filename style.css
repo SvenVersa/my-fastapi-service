@@ -1,0 +1,452 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,700&family=Permanent+Marker&display=swap');
+
+:root {
+    --ink-black: #101012;
+    --comic-yellow: #ffe600;
+    --comic-red: #ff2525;
+    --comic-blue: #00d2ff;
+    --comic-magenta: #ff0077;
+    --paper-white: #fffdf0;
+    --panel-border: 4px solid #101012;
+    --comic-shadow: 8px 8px 0px #101012;
+    --small-shadow: 4px 4px 0px #101012;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1a1a1a;
+    background-image: 
+        linear-gradient(rgba(16, 16, 18, 0.72), rgba(16, 16, 18, 0.82)),
+        url('images/comic-strips-bg.jpg');
+    background-repeat: repeat;
+    background-size: 550px auto;
+    background-attachment: fixed;
+    font-family: 'Comic Neue', cursive, sans-serif;
+    color: var(--ink-black);
+    min-height: 100vh;
+    padding: 1.5rem 1rem;
+}
+
+/* ==================== MASTHEAD ==================== */
+.comic-masthead {
+    max-width: 1200px;
+    margin: 0 auto 1.5rem auto;
+    background: var(--paper-white);
+    border: var(--panel-border);
+    box-shadow: var(--comic-shadow);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    transform: rotate(-0.3deg);
+}
+
+.comic-corner-box {
+    border: 2px solid var(--ink-black);
+    background: var(--comic-yellow);
+    padding: 0.35rem 0.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Bangers', cursive;
+    box-shadow: 2px 2px 0px var(--ink-black);
+    text-align: center;
+    line-height: 1.1;
+}
+
+.cc-price { font-size: 1.3rem; color: var(--comic-red); }
+.cc-code { font-size: 0.55rem; max-width: 70px; letter-spacing: 0.05em; margin: 2px 0; }
+.cc-issue { font-size: 0.95rem; color: #0066cc; }
+
+.masthead-center {
+    text-align: center;
+}
+
+.hero-subhead {
+    font-family: 'Bangers', cursive;
+    letter-spacing: 0.15em;
+    color: var(--comic-red);
+    font-size: 1.1rem;
+}
+
+.comic-logo {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(3.2rem, 8vw, 6.2rem);
+    letter-spacing: 0.06em;
+    line-height: 0.9;
+    color: var(--comic-yellow);
+    -webkit-text-stroke: 3px var(--ink-black);
+    text-shadow: 5px 5px 0px var(--comic-red), 8px 8px 0px var(--ink-black);
+}
+
+.banner-tag {
+    background: var(--ink-black);
+    color: var(--paper-white);
+    font-family: 'Bangers', cursive;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    padding: 0.15rem 0.8rem;
+    display: inline-block;
+    transform: rotate(-1deg);
+    margin-top: 4px;
+}
+
+.comic-toggle-btn {
+    background: var(--comic-magenta);
+    color: #fff;
+    border: var(--panel-border);
+    font-family: 'Bangers', cursive;
+    font-size: 1.15rem;
+    padding: 0.6rem 1rem;
+    box-shadow: var(--small-shadow);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.comic-toggle-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--ink-black);
+    background: #e6006b;
+}
+
+/* ==================== CONTROL & SQUAD BAR ==================== */
+.comic-nav-deck {
+    max-width: 1200px;
+    margin: 0 auto 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.search-bubble {
+    background: var(--paper-white);
+    border: var(--panel-border);
+    box-shadow: var(--comic-shadow);
+    padding: 0.8rem 1.25rem;
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+#search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    font-family: 'Comic Neue', cursive;
+    font-size: 1.15rem;
+    font-weight: 700;
+    outline: none;
+    color: var(--ink-black);
+}
+
+.action-btn {
+    background: var(--comic-red);
+    color: #fff;
+    border: 3px solid var(--ink-black);
+    font-family: 'Bangers', cursive;
+    font-size: 1.2rem;
+    padding: 0.4rem 1.4rem;
+    box-shadow: var(--small-shadow);
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    background: #ff0000;
+    transform: translate(-1px, -1px);
+}
+
+.squad-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.tab-btn {
+    background: var(--paper-white);
+    border: 3px solid var(--ink-black);
+    font-family: 'Bangers', cursive;
+    font-size: 1.1rem;
+    padding: 0.4rem 1rem;
+    box-shadow: 3px 3px 0px var(--ink-black);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.tab-btn.active {
+    background: var(--comic-yellow);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px var(--ink-black);
+}
+
+/* ==================== COMIC PAGE & STRIP VIEWPORT ==================== */
+.comic-book-viewport {
+    max-width: 1200px;
+    margin: 0 auto 3rem auto;
+}
+
+.page-flipper {
+    background: var(--comic-blue);
+    border: var(--panel-border);
+    box-shadow: var(--comic-shadow);
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.flip-btn {
+    background: var(--comic-yellow);
+    border: 3px solid var(--ink-black);
+    font-family: 'Bangers', cursive;
+    font-size: 1.25rem;
+    padding: 0.4rem 1.25rem;
+    box-shadow: var(--small-shadow);
+    cursor: pointer;
+}
+
+.flip-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.page-indicator {
+    font-family: 'Bangers', cursive;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-black);
+}
+
+/* The Comic Page Sheet */
+.comic-page-sheet {
+    background: var(--paper-white);
+    border: var(--panel-border);
+    box-shadow: 12px 12px 0px var(--ink-black);
+    padding: 1.75rem;
+    min-height: 700px;
+    position: relative;
+}
+
+/* Page Mode: Dynamic Comic Layout Grid */
+.comic-panel-layout {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 240px;
+    gap: 1.25rem;
+}
+
+/* Comic Panels */
+.comic-panel {
+    background: #fff;
+    border: var(--panel-border);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: var(--small-shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.comic-panel:hover {
+    transform: scale(1.02);
+    box-shadow: 8px 8px 0px var(--ink-black);
+    z-index: 10;
+}
+
+/* Panel sizing variations to look like a comic page */
+.panel-large { grid-column: span 8; grid-row: span 2; }
+.panel-tall  { grid-column: span 4; grid-row: span 2; }
+.panel-wide  { grid-column: span 6; grid-row: span 1; }
+.panel-half  { grid-column: span 6; grid-row: span 2; }
+.panel-third { grid-column: span 4; grid-row: span 1; }
+
+.panel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: contrast(110%);
+    transition: transform 0.35s ease;
+}
+
+.comic-panel:hover .panel-img {
+    transform: scale(1.08);
+}
+
+/* Comic Dialogue Bubble / Caption Box Over Panels */
+.panel-caption-box {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--comic-yellow);
+    border: 2px solid var(--ink-black);
+    padding: 0.25rem 0.65rem;
+    font-family: 'Bangers', cursive;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    box-shadow: 2px 2px 0px var(--ink-black);
+    z-index: 2;
+}
+
+.panel-speech-balloon {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    background: #ffffff;
+    border: 2.5px solid var(--ink-black);
+    border-radius: 12px;
+    padding: 0.5rem 0.75rem;
+    box-shadow: 3px 3px 0px var(--ink-black);
+    z-index: 2;
+}
+
+.balloon-title {
+    font-family: 'Bangers', cursive;
+    font-size: 1.45rem;
+    line-height: 1;
+    color: var(--comic-red);
+}
+
+.balloon-sub {
+    font-family: 'Comic Neue', cursive;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Sound Effect Pop Stamp (e.g. POW!) */
+.panel-sfx-stamp {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+    color: #fff;
+    background: var(--comic-magenta);
+    border: 2px solid var(--ink-black);
+    padding: 0.2rem 0.5rem;
+    transform: rotate(8deg);
+    box-shadow: 2px 2px 0px var(--ink-black);
+    z-index: 3;
+}
+
+/* ==================== STRIP MODE (WEBTOON / VERTICAL) ==================== */
+.comic-strip-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.strip-panel {
+    background: #fff;
+    border: var(--panel-border);
+    box-shadow: var(--comic-shadow);
+    padding: 1.25rem;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.strip-panel:hover {
+    transform: scale(1.015);
+}
+
+.strip-img-frame {
+    width: 100%;
+    height: 380px;
+    border: 3px solid var(--ink-black);
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.strip-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==================== CENTERFOLD DOSSIER (MODAL) ==================== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(16, 16, 18, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 1rem;
+}
+
+.modal.hidden { display: none; }
+
+.modal-comic-frame {
+    background: var(--paper-white);
+    border: 5px solid var(--ink-black);
+    box-shadow: 16px 16px 0px var(--ink-black);
+    max-width: 900px;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 2.5rem;
+}
+
+.close-comic-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: var(--comic-red);
+    color: #fff;
+    border: 3px solid var(--ink-black);
+    font-family: 'Bangers', cursive;
+    font-size: 1.2rem;
+    padding: 0.3rem 0.9rem;
+    box-shadow: var(--small-shadow);
+    cursor: pointer;
+}
+
+.close-comic-btn:hover { background: #ff0000; }
+
+.narrative-box {
+    background: var(--comic-yellow);
+    border: 3px solid var(--ink-black);
+    box-shadow: 4px 4px 0px var(--ink-black);
+    padding: 1rem;
+    font-family: 'Comic Neue', cursive;
+    font-weight: 700;
+}
+
+.splash-load {
+    font-family: 'Bangers', cursive;
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 4rem auto;
+    max-width: 500px;
+}
+
+@media (max-width: 768px) {
+    .comic-panel-layout {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 280px;
+    }
+    .panel-large, .panel-tall, .panel-wide, .panel-half, .panel-third {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
