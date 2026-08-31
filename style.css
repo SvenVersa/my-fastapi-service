@@ -3,7 +3,7 @@
 :root {
     --ink-black: #101012;
     --comic-red: #e30022;
-    --comic-yellow: #fcd116;
+    --comic-yellow: #ffde00; /* Brighter, punchy 90s yellow */
     --comic-blue: #00d2ff;
     --comic-white: #ffffff;
     --panel-border: 5px solid #101012;
@@ -19,9 +19,12 @@
 
 body {
     background-color: var(--comic-red);
-    /* 90s Halftone red background */
-    background-image: radial-gradient(var(--ink-black) 10%, transparent 10%);
-    background-size: 12px 12px;
+    background-image: 
+        linear-gradient(rgba(16, 16, 18, 0.72), rgba(16, 16, 18, 0.82)),
+        url('comics/kumiks.jpg');
+    background-repeat: repeat;
+    background-size: 550px auto;
+    background-attachment: fixed;
     font-family: 'Comic Neue', cursive, sans-serif;
     color: var(--ink-black);
     min-height: 100vh;
@@ -32,18 +35,19 @@ body {
 .comic-masthead {
     max-width: 1200px;
     margin: 0 auto 1.5rem auto;
-    background: var(--comic-yellow);
+    background: var(--comic-white);
     border: var(--panel-border);
     box-shadow: var(--comic-shadow);
     padding: 1.25rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     position: relative;
     transform: rotate(-0.5deg);
 }
 
 .comic-corner-box {
+    justify-self: start;
     border: 3px solid var(--ink-black);
     background: var(--comic-white);
     padding: 0.35rem 0.6rem;
@@ -62,6 +66,7 @@ body {
 .cc-issue { font-size: 1rem; color: var(--comic-blue); }
 
 .masthead-center {
+    justify-self: center;
     text-align: center;
 }
 
@@ -92,6 +97,10 @@ body {
     display: inline-block;
     transform: rotate(1deg);
     margin-top: 6px;
+}
+
+.mode-toggles {
+    justify-self: end;
 }
 
 .comic-toggle-btn {
@@ -189,7 +198,7 @@ body {
 }
 
 .page-flipper {
-    background: var(--comic-yellow);
+    background: var(--comic-white);
     border: var(--panel-border);
     box-shadow: var(--comic-shadow);
     padding: 0.75rem 1.25rem;
@@ -200,7 +209,7 @@ body {
 }
 
 .flip-btn {
-    background: var(--comic-white);
+    background: var(--comic-yellow);
     border: 3px solid var(--ink-black);
     font-family: 'Bangers', cursive;
     font-size: 1.25rem;
