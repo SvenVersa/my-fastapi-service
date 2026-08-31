@@ -1,3 +1,28 @@
+/**
+ * =========================================================================
+ * OMNIVERSE COMIC READER ENGINE
+ * =========================================================================
+ * Modes:
+ *  - Page-by-Page Flip Reader (Paginates heroes into stylized comic pages)
+ *  - Continuous Strip Reader (Infinite scroll Webtoon-style format)
+ * =========================================================================
+ */
+
+const API_URL = "https://my-fastapi-service-beta.vercel.app";
+
+// DOM Elements
+const comicStage = document.getElementById("comic-stage");
+const searchInput = document.getElementById("search-input");
+const resetBtn = document.getElementById("reset-btn");
+const prevPageBtn = document.getElementById("prev-page");
+const nextPageBtn = document.getElementById("next-page");
+const pageIndicator = document.getElementById("page-indicator");
+const pageFlipper = document.getElementById("page-flipper");
+const viewModeBtn = document.getElementById("view-mode-btn");
+const tabBtns = document.querySelectorAll(".tab-btn");
+const modal = document.getElementById("detail-modal");
+const modalBody = document.getElementById("modal-body");
+const closeModalBtn = document.getElementById("close-modal");
 // --- State Variables ---
 let rawCatalog = [];
 let filteredHeroes = [];
