@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiverse of Madness // Issue #1 Metahuman Classified</title>
+    <title>Omniverse // Issue #1 Metahuman Classified</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,16 +31,20 @@
     <section class="comic-nav-deck">
         <div class="search-bubble">
             <span class="speech-tail"></span>
-            <input type="text" id="search-input" placeholder="SEARCH HERO, SECRET ID, SQUAD OR POWERS..." autocomplete="off">
+            <input type="text" id="search-input" placeholder="SEARCH HERO, SECRET ID, OR POWERS..." autocomplete="off">
             <button id="reset-btn" class="action-btn">RESET!</button>
         </div>
 
+        <!-- Universe Filters -->
         <div class="squad-tabs">
-            <button class="tab-btn active" data-filter="ALL">ALL PAGES</button>
-            <button class="tab-btn" data-filter="AVENGERS">AVENGERS</button>
-            <button class="tab-btn" data-filter="JUSTICE LEAGUE">JUSTICE LEAGUE</button>
-            <button class="tab-btn" data-filter="X-MEN">X-MEN</button>
-            <button class="tab-btn" data-filter="GLOBAL">GLOBAL / INDIE</button>
+            <button class="tab-btn active" data-filter="ALL">ALL UNIVERSES</button>
+            <button class="tab-btn" data-filter="MARVEL">MARVEL</button>
+            <button class="tab-btn" data-filter="DC">DC COMICS</button>
+            <button class="tab-btn" data-filter="IMAGE">IMAGE / SKYBOUND</button>
+            <button class="tab-btn" data-filter="DARK_HORSE">DARK HORSE</button>
+            <button class="tab-btn" data-filter="DYNAMITE">DYNAMITE</button>
+            <button class="tab-btn" data-filter="VALIANT">VALIANT</button>
+            <button class="tab-btn" data-filter="INDIE">INDIE CLASSICS</button>
         </div>
     </section>
 
@@ -50,7 +54,7 @@
         <!-- Paginator Bar (For Page-by-Page Mode) -->
         <div class="page-flipper" id="page-flipper">
             <button id="prev-page" class="flip-btn">◀ PREVIOUS PAGE</button>
-            <div class="page-indicator" id="page-indicator">PAGE 1 OF 10</div>
+            <div class="page-indicator" id="page-indicator">PAGE 1 OF ?</div>
             <button id="next-page" class="flip-btn">NEXT PAGE ▶</button>
         </div>
 

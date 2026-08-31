@@ -1,308 +1,127 @@
-/**
- * =========================================================================
- * OMNIVERSE COMIC READER ENGINE
- * =========================================================================
- * Modes:
- *  - Page-by-Page Flip Reader (Paginates heroes into stylized comic pages)
- *  - Continuous Strip Reader (Infinite scroll Webtoon-style format)
- * =========================================================================
- */
+// --- State Variables ---
+let rawCatalog = [];
+let filteredHeroes = [];
+let currentPage = 1;
+const itemsPerPage = 8;
+let isStripMode = false;
 
-const API_URL = "https://my-fastapi-service-beta.vercel.app";
-
-// DOM Elements
-const comicStage = document.getElementById("comic-stage");
+// --- DOM Elements ---
+const stage = document.getElementById("comic-stage");
 const searchInput = document.getElementById("search-input");
 const resetBtn = document.getElementById("reset-btn");
-const prevPageBtn = document.getElementById("prev-page");
-const nextPageBtn = document.getElementById("next-page");
-const pageIndicator = document.getElementById("page-indicator");
-const pageFlipper = document.getElementById("page-flipper");
-const viewModeBtn = document.getElementById("view-mode-btn");
 const tabBtns = document.querySelectorAll(".tab-btn");
+const viewModeBtn = document.getElementById("view-mode-btn");
+const prevBtn = document.getElementById("prev-page");
+const nextBtn = document.getElementById("next-page");
+const pageIndicator = document.getElementById("page-indicator");
+const flipper = document.getElementById("page-flipper");
+
 const modal = document.getElementById("detail-modal");
 const modalBody = document.getElementById("modal-body");
 const closeModalBtn = document.getElementById("close-modal");
 
-// State
-let rawCatalog = [];
-let filteredHeroes = [];
-let currentPage = 1;
-const HEROES_PER_PAGE = 5; // 5 heroes per comic sheet page
-let isStripMode = false;   // false = Page Reader, true = Continuous Strip
-
-// Comic Panel Rhythm Templates
-const panelShapes = ["panel-large", "panel-tall", "panel-wide", "panel-half", "panel-third"];
-const sfxWords = ["POW!", "WHAM!", "KAPOW!", "BAM!", "ZAP!", "BOOM!"];
-
-// Audio Synthesizer
+// --- Dummy Audio Mock (Prevents crashes if you don't have sound files set up) ---
 const AudioFX = {
-    ctx: null,
-    init() {
-        if (!this.ctx) {
-            const AudioCtx = window.AudioContext || window.webkitAudioContext;
-            if (AudioCtx) this.ctx = new AudioCtx();
-        }
-        if (this.ctx && this.ctx.state === "suspended") this.ctx.resume();
-    },
-    playFlip() {
-        try {
-            this.init();
-            if (!this.ctx) return;
-            const now = this.ctx.currentTime;
-            const osc = this.ctx.createOscillator();
-            const gain = this.ctx.createGain();
-            osc.type = "sawtooth";
-            osc.frequency.setValueAtTime(300, now);
-            osc.frequency.exponentialRampToValueAtTime(80, now + 0.12);
-            gain.gain.setValueAtTime(0.3, now);
-            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
-            osc.connect(gain);
-            gain.connect(this.ctx.destination);
-            osc.start(now);
-            osc.stop(now + 0.12);
-        } catch (e) {}
-    },
-    playPunch() {
-        try {
-            this.init();
-            if (!this.ctx) return;
-            const now = this.ctx.currentTime;
-            const osc = this.ctx.createOscillator();
-            const gain = this.ctx.createGain();
-            osc.type = "triangle";
-            osc.frequency.setValueAtTime(160, now);
-            osc.frequency.exponentialRampToValueAtTime(30, now + 0.15);
-            gain.gain.setValueAtTime(0.6, now);
-            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
-            osc.connect(gain);
-            gain.connect(this.ctx.destination);
-            osc.start(now);
-            osc.stop(now + 0.15);
-        } catch (e) {}
-    }
+    playFlip: () => { console.log("*Page turn sound*"); }
 };
 
-// 1. Initialize Archive Data
-async function initComic() {
+// --- Initialization ---
+async function initArchive() {
     try {
-        const response = await fetch(`${API_URL}/heroes`);
-        rawCatalog = await response.json();
+        // Fetches data from your FastAPI backend
+        const response = await fetch("/heroes");
+        if (!response.ok) throw new Error("Failed to fetch backend data.");
         
-        // Exclude secret easter egg from default view
-        filteredHeroes = rawCatalog.filter(h => h.id !== 0);
+        rawCatalog = await response.json();
+        filteredHeroes = [...rawCatalog];
         renderReader();
-    } catch (err) {
-        comicStage.innerHTML = `
-            <div class="narrative-box" style="background:#ffcdd2; color:#b71c1c; text-align:center;">
-                💥 ISSUE PRINTING HALTED: ${err.message}
-            </div>
-        `;
+    } catch (error) {
+        stage.innerHTML = `<div class="narrative-box error">🚨 ERROR REPORT: ${error.message}</div>`;
     }
 }
 
-// 2. Main Reader Renderer
+// --- Render Logic ---
 function renderReader() {
-    if (!filteredHeroes.length) {
-        comicStage.innerHTML = `
-            <div class="narrative-box splash-load">
-                💥 ZERO HEROES MATCHED THIS SCRIPT! TRY ANOTHER SEARCH!
-            </div>
-        `;
-        pageFlipper.style.display = "none";
+    stage.innerHTML = "";
+    
+    if (filteredHeroes.length === 0) {
+        stage.innerHTML = `<div class="narrative-box">NO METAHUMANS FOUND IN THIS QUADRANT.</div>`;
+        flipper.style.display = "none";
         return;
     }
 
-    if (isStripMode) {
-        // Continuous Webtoon-Style Vertical Strip
-        pageFlipper.style.display = "none";
-        renderStripMode();
+    let itemsToRender = filteredHeroes;
+
+    if (!isStripMode) {
+        flipper.style.display = "flex";
+        const totalPages = Math.ceil(filteredHeroes.length / itemsPerPage);
+        
+        // Safety check for empty or out-of-bounds pages
+        if (currentPage > totalPages) currentPage = totalPages;
+        if (currentPage < 1) currentPage = 1;
+
+        pageIndicator.textContent = `PAGE ${currentPage} OF ${totalPages}`;
+        prevBtn.disabled = currentPage === 1;
+        nextBtn.disabled = currentPage === totalPages;
+
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        itemsToRender = filteredHeroes.slice(startIndex, startIndex + itemsPerPage);
     } else {
-        // Interactive Page-by-Page Comic Issue
-        pageFlipper.style.display = "flex";
-        renderPageMode();
+        flipper.style.display = "none";
     }
-}
 
-// 3. Render Page-by-Page Sheet
-function renderPageMode() {
-    const totalPages = Math.ceil(filteredHeroes.length / HEROES_PER_PAGE);
-    if (currentPage > totalPages) currentPage = 1;
-
-    const startIdx = (currentPage - 1) * HEROES_PER_PAGE;
-    const pageHeroes = filteredHeroes.slice(startIdx, startIdx + HEROES_PER_PAGE);
-
-    pageIndicator.innerText = `PAGE ${currentPage} OF ${totalPages}`;
-    prevPageBtn.disabled = currentPage === 1;
-    nextPageBtn.disabled = currentPage === totalPages;
-
-    let panelHTML = `<div class="comic-panel-layout">`;
-
-    pageHeroes.forEach((hero, index) => {
-        const shape = panelShapes[index % panelShapes.length];
-        const sfx = sfxWords[index % sfxWords.length];
-        const fallbackImg = `https://via.placeholder.com/450x350/ffe600/101012?text=${encodeURIComponent(hero.alias)}`;
-
-        panelHTML += `
-            <article class="comic-panel ${shape}" onclick="openDossier(${hero.id})">
-                <img src="${hero.image}" alt="${hero.alias}" class="panel-img" onerror="this.onerror=null; this.src='${fallbackImg}';">
-                <div class="panel-caption-box">PANEL #${hero.id < 10 ? '0' + hero.id : hero.id} // ${hero.origin_era}</div>
-                <div class="panel-sfx-stamp">${sfx}</div>
-                <div class="panel-speech-balloon">
-                    <div class="balloon-title">${hero.alias}</div>
-                    <div class="balloon-sub">ID: ${hero.civilian_name || hero.civilian_identity}</div>
-                </div>
-            </article>
-        `;
-    });
-
-    panelHTML += `</div>`;
-    comicStage.innerHTML = panelHTML;
-}
-
-// 4. Render Vertical Webtoon Strip Mode
-function renderStripMode() {
-    let stripHTML = `<div class="comic-strip-layout">`;
-
-    filteredHeroes.forEach(hero => {
-        const fallbackImg = `https://via.placeholder.com/800x400/ffe600/101012?text=${encodeURIComponent(hero.alias)}`;
-        stripHTML += `
-            <article class="strip-panel" onclick="openDossier(${hero.id})">
-                <div class="narrative-box" style="margin-bottom: 0.75rem;">
-                    <strong>CHAPTER RECORD #${hero.id}:</strong> ${hero.alias.toUpperCase()} &bull; ERA ${hero.origin_era}
-                </div>
-                <div class="strip-img-frame">
-                    <img src="${hero.image}" alt="${hero.alias}" onerror="this.onerror=null; this.src='${fallbackImg}';">
-                </div>
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <div>
-                        <h3 style="font-family:'Bangers', cursive; font-size:2rem; color:var(--comic-red);">${hero.alias}</h3>
-                        <p style="font-weight:700;">TRUE IDENTITY: ${hero.civilian_name || hero.civilian_identity}</p>
-                    </div>
-                    <button class="action-btn">CLICK TO INSPECT SPLASH ▶</button>
-                </div>
-            </article>
-        `;
-    });
-
-    stripHTML += `</div>`;
-    comicStage.innerHTML = stripHTML;
-}
-
-// 5. Open Full Centerfold Dossier (Modal)
-window.openDossier = function(id) {
-    AudioFX.playPunch();
-    const hero = rawCatalog.find(h => h.id === id);
-    if (!hero) return;
-
-    modalBody.innerHTML = `
-        <div style="border-bottom: 4px solid var(--ink-black); padding-bottom: 1rem; margin-bottom: 1.5rem;">
-            <div class="narrative-box" style="display:inline-block; margin-bottom: 0.5rem;">
-                ★ CENTERFOLD SPLASH DOSSIER #${hero.id} ★
+    // Build the character cards
+    itemsToRender.forEach(hero => {
+        const panel = document.createElement("div");
+        panel.className = "comic-panel";
+        panel.innerHTML = `
+            <div class="panel-header">${hero.alias.toUpperCase()}</div>
+            <div class="panel-image-placeholder">https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcRnZJ6VaYM5Cj5iKrMVyZWHf3g-LyEgu-a1hQ8R1vecWtLm9ro_QJ7YIw_sr-ZfAqGLDz4tTs-dN_F1tLY</div>
+            <div class="panel-caption">
+                <strong>ID:</strong> ${hero.civilian_name}<br>
+                <strong>AFFILIATION:</strong> ${hero.affiliation}
             </div>
-            <h2 style="font-family:'Bangers', cursive; font-size:3.5rem; color:var(--comic-red); line-height:0.95;">
-                ${hero.alias}
-            </h2>
-            <p style="font-size:1.2rem; font-weight:700; color:#333;">
-                CIVILIAN IDENTITY: <span style="color:var(--comic-blue);">${hero.civilian_name || hero.civilian_identity}</span> &bull; DEBUT: ${hero.origin_era}
-            </p>
-        </div>
+        `;
+        panel.addEventListener("click", () => openModal(hero));
+        stage.appendChild(panel);
+    });
+}
 
-        <div style="width:100%; height:280px; border:4px solid var(--ink-black); box-shadow:6px 6px 0px var(--ink-black); margin-bottom:1.5rem; overflow:hidden;">
-            <img src="${hero.image}" alt="${hero.alias}" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-
-        <div style="display:grid; gap:0.85rem; font-size:1.05rem;">
-            <div class="narrative-box" style="background:#fff9c4;"><strong>⚡ POWER CLASS:</strong> ${hero.classification}</div>
-            <div class="narrative-box" style="background:#ffcdd2;"><strong>💥 THREAT LEVEL:</strong> ${hero.threat_level}</div>
-            <div class="narrative-box" style="background:#e1f5fe;"><strong>🦸‍♂️ SQUAD / TEAM:</strong> ${hero.affiliation}</div>
-            <div class="narrative-box" style="background:#fff;"><strong>📍 BASE OF OPERATIONS:</strong> ${hero.base_of_operations}</div>
-            <div class="narrative-box" style="background:#fffde7;"><strong>🔥 SUPERPOWERS:</strong> ${hero.primary_powers}</div>
-            <div class="narrative-box" style="background:#ffebee; color:#b71c1c;"><strong>⚠️ VULNERABILITY:</strong> ${hero.tactical_vulnerability}</div>
-            <div class="narrative-box" style="background:#fff;"><strong>🛡️ GEAR & ARTIFACTS:</strong> ${hero.signature_gear}</div>
-            <div class="narrative-box" style="background:#fff;"><strong>⚔️ COMBAT DOCTRINE:</strong> ${hero.tactical_profile}</div>
-            <div class="narrative-box" style="background:#f3e5f5;"><strong>🧠 PSYCHOLOGICAL PROFILE:</strong> ${hero.psychological_dossier}</div>
-        </div>
-    `;
-
-    modal.classList.remove("hidden");
-    document.body.style.overflow = "hidden";
-};
-
-// 6. Navigation & Reading Mode Toggles
-prevPageBtn.addEventListener("click", () => {
-    if (currentPage > 1) {
-        AudioFX.playFlip();
-        currentPage--;
-        renderReader();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-});
-
-nextPageBtn.addEventListener("click", () => {
-    const totalPages = Math.ceil(filteredHeroes.length / HEROES_PER_PAGE);
-    if (currentPage < totalPages) {
-        AudioFX.playFlip();
-        currentPage++;
-        renderReader();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-});
-
-viewModeBtn.addEventListener("click", () => {
-    AudioFX.playFlip();
-    isStripMode = !isStripMode;
-    viewModeBtn.innerText = isStripMode ? "📖 SWITCH TO PAGE-BY-PAGE READER" : "📜 SWITCH TO CONTINUOUS STRIP";
-    renderReader();
-});
-
-// Search and Filter Listeners
-searchInput.addEventListener("input", (e) => {
-    const q = e.target.value.toLowerCase().trim();
-    
-    // Easter Egg keywords
-    const easterEggKeys = ["maki", "kolorcoaster", "dilaw", "namumula", "turning green", "itim na ulap"];
-    if (easterEggKeys.some(k => q === k)) {
-        const easterEgg = rawCatalog.find(h => h.id === 0);
-        if (easterEgg) {
-            filteredHeroes = [easterEgg];
-            currentPage = 1;
-            renderReader();
-            return;
-        }
-    }
-
-    filteredHeroes = rawCatalog
-        .filter(h => h.id !== 0)
-        .filter(h => Object.values(h).some(v => String(v).toLowerCase().includes(q)));
-
-    currentPage = 1;
-    renderReader();
-});
-
+// --- Universe Tab Filtering ---
 tabBtns.forEach(tab => {
     tab.addEventListener("click", () => {
         AudioFX.playFlip();
+        
+        // Update active tab styling
         tabBtns.forEach(t => t.classList.remove("active"));
         tab.classList.add("active");
         
         const filter = tab.dataset.filter;
-        searchInput.value = "";
+        searchInput.value = ""; // Clear search when switching universes
 
         if (filter === "ALL") {
-            filteredHeroes = rawCatalog.filter(h => h.id !== 0);
-        } else if (filter === "GLOBAL") {
-            filteredHeroes = rawCatalog.filter(h => 
-                h.id !== 0 && 
-                !h.affiliation.includes("Avengers") && 
-                !h.affiliation.includes("Justice League") && 
-                !h.affiliation.includes("X-Men")
-            );
-        } else {
-            filteredHeroes = rawCatalog.filter(h => 
-                h.id !== 0 && 
-                h.affiliation.toUpperCase().includes(filter)
-            );
+            filteredHeroes = [...rawCatalog];
+        } else if (filter === "MARVEL") {
+            const marvelTeams = ["AVENGERS", "X-MEN", "FANTASTIC", "DEFENDERS", "MYSTIC", "WEB-WARRIORS", "X-FORCE", "WAKANDA"];
+            filteredHeroes = rawCatalog.filter(h => marvelTeams.some(team => h.affiliation.toUpperCase().includes(team)));
+        } else if (filter === "DC") {
+            const dcTeams = ["JUSTICE", "TITANS", "SUICIDE", "WATCHMEN", "GREEN LANTERN"];
+            filteredHeroes = rawCatalog.filter(h => dcTeams.some(team => h.affiliation.toUpperCase().includes(team)));
+        } else if (filter === "IMAGE") {
+            const imageTeams = ["GLOBE", "VILTRUM", "SCORCHED", "FREAK"];
+            filteredHeroes = rawCatalog.filter(h => imageTeams.some(team => h.affiliation.toUpperCase().includes(team)));
+        } else if (filter === "DARK_HORSE") {
+            const dhTeams = ["B.P.R.D.", "UMBRELLA"];
+            filteredHeroes = rawCatalog.filter(h => dhTeams.some(team => h.affiliation.toUpperCase().includes(team)));
+        } else if (filter === "DYNAMITE") {
+            const dynTeams = ["THE BOYS", "THE SEVEN"];
+            filteredHeroes = rawCatalog.filter(h => dynTeams.some(team => h.affiliation.toUpperCase().includes(team)));
+        } else if (filter === "VALIANT") {
+            const valTeams = ["UNITY", "RISING SUN", "MI-6"];
+            filteredHeroes = rawCatalog.filter(h => valTeams.some(team => h.affiliation.toUpperCase().includes(team)));
+        } else if (filter === "INDIE") {
+            const indieTeams = ["TURTLES", "CRIMEFIGHTERS", "JUSTICE FOREVER", "JUSTICE DEPARTMENT"];
+            filteredHeroes = rawCatalog.filter(h => indieTeams.some(team => h.affiliation.toUpperCase().includes(team)));
         }
 
         currentPage = 1;
@@ -310,24 +129,77 @@ tabBtns.forEach(tab => {
     });
 });
 
-resetBtn.addEventListener("click", () => {
-    searchInput.value = "";
+// --- Search and View Toggles ---
+searchInput.addEventListener("input", (e) => {
+    const term = e.target.value.toLowerCase();
+    
+    // Reset tabs to "ALL" visually when searching
     tabBtns.forEach(t => t.classList.remove("active"));
-    document.querySelector('.tab-btn[data-filter="ALL"]').classList.add("active");
-    filteredHeroes = rawCatalog.filter(h => h.id !== 0);
+    document.querySelector('[data-filter="ALL"]').classList.add("active");
+
+    filteredHeroes = rawCatalog.filter(h => 
+        h.alias.toLowerCase().includes(term) ||
+        h.civilian_name.toLowerCase().includes(term) ||
+        h.primary_powers.toLowerCase().includes(term)
+    );
+    
     currentPage = 1;
     renderReader();
 });
 
-// Close Modal
-function closeDossier() {
-    modal.classList.add("hidden");
-    document.body.style.overflow = "auto";
+resetBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    filteredHeroes = [...rawCatalog];
+    tabBtns.forEach(t => t.classList.remove("active"));
+    document.querySelector('[data-filter="ALL"]').classList.add("active");
+    currentPage = 1;
+    renderReader();
+});
+
+viewModeBtn.addEventListener("click", () => {
+    isStripMode = !isStripMode;
+    viewModeBtn.textContent = isStripMode ? "📑 SWITCH TO PAGE MODE" : "📖 SWITCH TO CONTINUOUS STRIP";
+    stage.classList.toggle("continuous-strip-mode");
+    renderReader();
+});
+
+// --- Pagination Controls ---
+prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+        AudioFX.playFlip();
+        currentPage--;
+        renderReader();
+    }
+});
+
+nextBtn.addEventListener("click", () => {
+    const totalPages = Math.ceil(filteredHeroes.length / itemsPerPage);
+    if (currentPage < totalPages) {
+        AudioFX.playFlip();
+        currentPage++;
+        renderReader();
+    }
+});
+
+// --- Modal Controls ---
+function openModal(hero) {
+    modalBody.innerHTML = `
+        <h2 class="modal-title">${hero.alias}</h2>
+        <p><strong>TRUE NAME:</strong> ${hero.civilian_name}</p>
+        <p><strong>CLASS:</strong> ${hero.classification}</p>
+        <p><strong>THREAT LEVEL:</strong> ${hero.threat_level}</p>
+        <p><strong>POWERS:</strong> ${hero.primary_powers}</p>
+        <p><strong>WEAKNESSES:</strong> ${hero.tactical_vulnerability}</p>
+        <p><strong>GEAR:</strong> ${hero.signature_gear}</p>
+        <hr>
+        <p><em>DOSSIER NOTES:</em> ${hero.psychological_dossier}</p>
+    `;
+    modal.classList.remove("hidden");
 }
 
-closeModalBtn.addEventListener("click", closeDossier);
-window.addEventListener("click", (e) => { if (e.target === modal) closeDossier(); });
-window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDossier(); });
+closeModalBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+});
 
-// Boot
-document.addEventListener("DOMContentLoaded", initComic);
+// Run initialization on load
+initArchive();
