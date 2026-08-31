@@ -1,6 +1,6 @@
-const API_URL = "https://my-fastapi-service-beta.vercel.app";
+    const API_URL = "https://my-fastapi-service-beta.vercel.app";
 
-    // --- State Variables ---
+     // --- State Variables ---
     let rawCatalog = [];
     let filteredHeroes = [];
     let currentPage = 1;
@@ -30,8 +30,8 @@ const API_URL = "https://my-fastapi-service-beta.vercel.app";
     // --- Initialization ---
     async function initArchive() {
         try {
-            // Fetches data from your FastAPI backend using the explicit API URL
-            const response = await fetch(`${API_URL}/heroes`);
+            // Fetches data from your FastAPI backend using relative routing
+            const response = await fetch("/heroes");
             if (!response.ok) throw new Error("Failed to fetch backend data.");
             
             rawCatalog = await response.json();
