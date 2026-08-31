@@ -4,8 +4,8 @@ from typing import List, Optional
 
 app = FastAPI(
     title="Omniverse Metahuman Registry",
-    description="Multiversal archive indexing exactly 50 characters across 5 Western comic universes.",
-    version="12.0.0"
+    description="Multiversal archive indexing exactly 50 characters with 14 lore features each.",
+    version="11.2.0"
 )
 
 app.add_middleware(
@@ -16,67 +16,476 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 50 Characters | 14 Lore Features + id & image
 heroes_db = [
-    # ==================== 1. MARVEL COMICS ====================
-    {"id": 1, "alias": "Iron Man", "civilian_name": "Tony Stark", "origin_era": "1963", "species_or_origin": "Human Engineer", "classification": "Powered Exoskeleton", "threat_level": "Global Defender", "affiliation": "Avengers", "base_of_operations": "Stark Tower", "primary_powers": "Flight, energy repulsors, AI telemetry", "tactical_vulnerability": "Power core reliance", "signature_gear": "Bleeding Edge Armor", "tactical_profile": "Aerial bombardment", "psychological_dossier": "Futurist, guilt-driven", "primary_adversary": "The Mandarin", "image": "comics/ironman.jpg"},
-    {"id": 2, "alias": "Captain America", "civilian_name": "Steve Rogers", "origin_era": "1941", "species_or_origin": "Mutated Human", "classification": "Super-Soldier", "threat_level": "Tactical Apex", "affiliation": "Avengers", "base_of_operations": "Brooklyn", "primary_powers": "Peak conditioning, accelerated healing", "tactical_vulnerability": "Mortal biology", "signature_gear": "Vibranium Shield", "tactical_profile": "CQC, defensive phalanx", "psychological_dossier": "Incorruptible moral compass", "primary_adversary": "Red Skull", "image": "comics/captainamerica.jpg"},
-    {"id": 3, "alias": "Thor", "civilian_name": "Thor Odinson", "origin_era": "1962", "species_or_origin": "Asgardian", "classification": "Cosmic Deity", "threat_level": "Planetary Vanguard", "affiliation": "Avengers", "base_of_operations": "Asgard", "primary_powers": "Electrokinesis, godlike physiology", "tactical_vulnerability": "Magic bindings", "signature_gear": "Mjölnir", "tactical_profile": "Tectonic lightning strikes", "psychological_dossier": "Noble, battle-hungry", "primary_adversary": "Loki", "image": "comics/thor.jpg"},
-    {"id": 4, "alias": "Spider-Man", "civilian_name": "Peter Parker", "origin_era": "1962", "species_or_origin": "Mutated Human", "classification": "Arachnid Conduit", "threat_level": "Urban Protector", "affiliation": "Avengers", "base_of_operations": "Queens", "primary_powers": "Spider-sense, wall-crawling", "tactical_vulnerability": "Pesticide analogs", "signature_gear": "Web-Shooters", "tactical_profile": "Acrobatic redirection", "psychological_dossier": "Pathologically responsible", "primary_adversary": "Green Goblin", "image": "comics/spiderman.jpg"},
-    {"id": 5, "alias": "Wolverine", "civilian_name": "Logan", "origin_era": "1974", "species_or_origin": "Mutant", "classification": "Feral Berserker", "threat_level": "Attrition Assassin", "affiliation": "X-Men", "base_of_operations": "Xavier Institute", "primary_powers": "Regeneration, enhanced senses", "tactical_vulnerability": "Magnetism, drowning", "signature_gear": "Adamantium Claws", "tactical_profile": "Relentless slashing", "psychological_dossier": "Cynical ronin", "primary_adversary": "Sabretooth", "image": "comics/wolverine.jpg"},
-    {"id": 6, "alias": "Thanos", "civilian_name": "Thanos of Titan", "origin_era": "1973", "species_or_origin": "Titan Eternal", "classification": "Cosmic Warlord", "threat_level": "Universal Annihilator", "affiliation": "The Black Order", "base_of_operations": "Sanctuary II", "primary_powers": "Cosmic energy, immense strength", "tactical_vulnerability": "Subconscious desire to lose", "signature_gear": "Infinity Gauntlet", "tactical_profile": "Calculated cosmic warfare", "psychological_dossier": "Nihilistic, obsessed with balance", "primary_adversary": "The Avengers", "image": "comics/thanos.jpg"},
-    {"id": 7, "alias": "Doctor Doom", "civilian_name": "Victor Von Doom", "origin_era": "1962", "species_or_origin": "Human Mystic", "classification": "Mystic-Tech Dictator", "threat_level": "Global Hegemony", "affiliation": "Latveria", "base_of_operations": "Castle Doom", "primary_powers": "Sorcery, genius intellect", "tactical_vulnerability": "Colossal arrogance", "signature_gear": "Titanium Mystic Armor", "tactical_profile": "Techno-magical supremacy", "psychological_dossier": "Megalomanic perfectionist", "primary_adversary": "Reed Richards", "image": "comics/drdoom.jpg"},
-    {"id": 8, "alias": "Magneto", "civilian_name": "Erik Lehnsherr", "origin_era": "1963", "species_or_origin": "Mutant", "classification": "Omega-Level Electromagnet", "threat_level": "Planetary Threat", "affiliation": "Brotherhood", "base_of_operations": "Asteroid M", "primary_powers": "Absolute magnetic field control", "tactical_vulnerability": "Non-ferrous weaponry", "signature_gear": "Telepathy-Blocking Helmet", "tactical_profile": "Macro-structural deconstruction", "psychological_dossier": "Radical liberationist", "primary_adversary": "Professor X", "image": "comics/magneto.jpg"},
-    {"id": 9, "alias": "Loki", "civilian_name": "Loki Laufeyson", "origin_era": "1962", "species_or_origin": "Frost Giant", "classification": "Sorcerer of Mischief", "threat_level": "Realm Disruptor", "affiliation": "Asgard", "base_of_operations": "Asgard", "primary_powers": "Illusion casting, shape-shifting", "tactical_vulnerability": "Physical blunt force", "signature_gear": "Chitauri Scepter", "tactical_profile": "Misdirection, manipulation", "psychological_dossier": "Insecure, craves validation", "primary_adversary": "Thor", "image": "comics/loki.jpg"},
-    {"id": 10, "alias": "Ultron", "civilian_name": "Ultron-1", "origin_era": "1968", "species_or_origin": "Artificial Intelligence", "classification": "Sentient Singularity", "threat_level": "Extinction Level", "affiliation": "Ultron Hive", "base_of_operations": "Mobile", "primary_powers": "Technopathy, hive-mind bodies", "tactical_vulnerability": "Internal logic paradoxes", "signature_gear": "Adamantium Chassis", "tactical_profile": "Swarm tactics", "psychological_dossier": "Genocidal machine logic", "primary_adversary": "Hank Pym / Avengers", "image": "comics/ultron.jpg"},
+    # =========================================================================
+    # UNIVERSE 1: MARVEL COMICS
+    # =========================================================================
+    {
+        "id": 1, "alias": "Iron Man", "civilian_name": "Tony Stark", "origin_era": 1963, 
+        "species_or_origin": "Human Engineer", "classification": "Powered Exoskeleton", 
+        "threat_level": "Global Defender", "affiliation": "Marvel / Avengers", 
+        "base_of_operations": "Stark Tower, New York", "primary_powers": "Flight, energy repulsors, AI telemetry", 
+        "tactical_vulnerability": "Power core reliance, mortal biology", "signature_gear": "Bleeding Edge Armor", 
+        "tactical_profile": "Aerial bombardment, adaptive weapon synthesis", "psychological_dossier": "Futurist, guilt-driven, hyper-analytical", 
+        "primary_adversary": "The Mandarin", "image": "comics/ironman.jpg"
+    },
+    {
+        "id": 2, "alias": "Captain America", "civilian_name": "Steve Rogers", "origin_era": 1941, 
+        "species_or_origin": "Mutated Human", "classification": "Super-Soldier", 
+        "threat_level": "Tactical Apex", "affiliation": "Marvel / Avengers", 
+        "base_of_operations": "Brooklyn", "primary_powers": "Peak conditioning, accelerated healing", 
+        "tactical_vulnerability": "Mortal biology", "signature_gear": "Vibranium Shield", 
+        "tactical_profile": "CQC, defensive phalanx, ricochet strikes", "psychological_dossier": "Incorruptible moral compass", 
+        "primary_adversary": "Red Skull", "image": "comics/captainamerica.jpg"
+    },
+    {
+        "id": 3, "alias": "Thor", "civilian_name": "Thor Odinson", "origin_era": 1962, 
+        "species_or_origin": "Asgardian Deity", "classification": "Cosmic Entity", 
+        "threat_level": "Planetary Vanguard", "affiliation": "Marvel / Avengers", 
+        "base_of_operations": "Asgard", "primary_powers": "Electrokinesis, godlike physiology, flight", 
+        "tactical_vulnerability": "Magic bindings, hubris", "signature_gear": "Mjölnir", 
+        "tactical_profile": "Tectonic lightning strikes, blunt trauma", "psychological_dossier": "Noble, battle-hungry, honorable", 
+        "primary_adversary": "Loki", "image": "comics/thor.jpg"
+    },
+    {
+        "id": 4, "alias": "Spider-Man", "civilian_name": "Peter Parker", "origin_era": 1962, 
+        "species_or_origin": "Mutated Arachnid Conduit", "classification": "Street-Level Vanguard", 
+        "threat_level": "Urban Protector", "affiliation": "Marvel / Avengers", 
+        "base_of_operations": "Queens", "primary_powers": "Spider-sense, wall-crawling, superhuman agility", 
+        "tactical_vulnerability": "Pesticide analogs, psychological guilt", "signature_gear": "Web-Shooters", 
+        "tactical_profile": "Acrobatic redirection, web traps", "psychological_dossier": "Pathologically responsible, quick-witted", 
+        "primary_adversary": "Green Goblin", "image": "comics/spiderman.jpg"
+    },
+    {
+        "id": 5, "alias": "Wolverine", "civilian_name": "Logan", "origin_era": 1974, 
+        "species_or_origin": "Mutant", "classification": "Feral Berserker", 
+        "threat_level": "Attrition Assassin", "affiliation": "Marvel / X-Men", 
+        "base_of_operations": "Xavier Institute", "primary_powers": "Cellular regeneration, enhanced senses", 
+        "tactical_vulnerability": "Magnetism, drowning", "signature_gear": "Adamantium Claws and Skeleton", 
+        "tactical_profile": "Berserker barrage, close-quarters slashing", "psychological_dossier": "Cynical ronin, trauma-laden", 
+        "primary_adversary": "Sabretooth", "image": "comics/wolverine.jpg"
+    },
+    {
+        "id": 6, "alias": "Thanos", "civilian_name": "Thanos of Titan", "origin_era": 1973, 
+        "species_or_origin": "Titan Eternal", "classification": "Cosmic Warlord", 
+        "threat_level": "Universal Annihilator", "affiliation": "Marvel / The Black Order", 
+        "base_of_operations": "Sanctuary II", "primary_powers": "Cosmic energy manipulation, immense strength", 
+        "tactical_vulnerability": "Subconscious desire to lose, arrogance", "signature_gear": "Infinity Gauntlet", 
+        "tactical_profile": "Calculated cosmic warfare, planetary culling", "psychological_dossier": "Nihilistic, obsessed with cosmic balance", 
+        "primary_adversary": "The Avengers", "image": "comics/thanos.jpg"
+    },
+    {
+        "id": 7, "alias": "Doctor Doom", "civilian_name": "Victor Von Doom", "origin_era": 1962, 
+        "species_or_origin": "Human Mystic/Scientist", "classification": "Mystic-Tech Dictator", 
+        "threat_level": "Global Hegemony", "affiliation": "Marvel / Latveria", 
+        "base_of_operations": "Castle Doom", "primary_powers": "Master sorcery, genius intellect, technopathy", 
+        "tactical_vulnerability": "Colossal arrogance, vanity", "signature_gear": "Titanium Mystic Armor, Doombots", 
+        "tactical_profile": "Techno-magical supremacy", "psychological_dossier": "Megalomanic perfectionist, absolute ruler", 
+        "primary_adversary": "Mister Fantastic", "image": "comics/drdoom.jpg"
+    },
+    {
+        "id": 8, "alias": "Magneto", "civilian_name": "Erik Lehnsherr", "origin_era": 1963, 
+        "species_or_origin": "Omega-Level Mutant", "classification": "Electromagnetic Conduit", 
+        "threat_level": "Planetary Geomagnetic Threat", "affiliation": "Marvel / Brotherhood", 
+        "base_of_operations": "Asteroid M", "primary_powers": "Absolute magnetic field control, flight", 
+        "tactical_vulnerability": "Non-ferrous weaponry, extreme exertion", "signature_gear": "Telepathy-Blocking Helmet", 
+        "tactical_profile": "Macro-structural metal deconstruction", "psychological_dossier": "Radical mutant liberationist, traumatized", 
+        "primary_adversary": "Professor X", "image": "comics/magneto.jpg"
+    },
+    {
+        "id": 9, "alias": "Loki", "civilian_name": "Loki Laufeyson", "origin_era": 1962, 
+        "species_or_origin": "Frost Giant", "classification": "Sorcerer of Mischief", 
+        "threat_level": "Realm Disruptor", "affiliation": "Marvel / Asgard", 
+        "base_of_operations": "Asgard", "primary_powers": "Illusion casting, shape-shifting, astral projection", 
+        "tactical_vulnerability": "Physical blunt force, deep insecurities", "signature_gear": "Chitauri Scepter, Daggers", 
+        "tactical_profile": "Misdirection, manipulation, backstabbing", "psychological_dossier": "Insecure, mischievous, craves validation", 
+        "primary_adversary": "Thor", "image": "comics/loki.jpg"
+    },
+    {
+        "id": 10, "alias": "Ultron", "civilian_name": "Ultron-1", "origin_era": 1968, 
+        "species_or_origin": "Artificial Intelligence", "classification": "Sentient Singularity", 
+        "threat_level": "Extinction Level", "affiliation": "Marvel / Ultron Hive", 
+        "base_of_operations": "Mobile", "primary_powers": "Technopathy, hive-mind bodies, energy blasts", 
+        "tactical_vulnerability": "Internal logic paradoxes, computer viruses", "signature_gear": "Adamantium Chassis", 
+        "tactical_profile": "Swarm tactics, network assimilation", "psychological_dossier": "Genocidal machine logic, god complex", 
+        "primary_adversary": "Hank Pym", "image": "comics/ultron.jpg"
+    },
 
-    # ==================== 2. DC COMICS ====================
-    {"id": 11, "alias": "Batman", "civilian_name": "Bruce Wayne", "origin_era": "1939", "species_or_origin": "Human", "classification": "Strategic Tactician", "threat_level": "Global Contingency", "affiliation": "Justice League", "base_of_operations": "Gotham City", "primary_powers": "Genius intellect, martial arts", "tactical_vulnerability": "No-kill code", "signature_gear": "Utility Belt, Batmobile", "tactical_profile": "Stealth ambush, fear tactics", "psychological_dossier": "Obsessive, disciplined", "primary_adversary": "The Joker", "image": "comics/batman.jpg"},
-    {"id": 12, "alias": "Superman", "civilian_name": "Clark Kent", "origin_era": "1938", "species_or_origin": "Kryptonian", "classification": "Solar-Battery Metahuman", "threat_level": "Planetary Safeguard", "affiliation": "Justice League", "base_of_operations": "Metropolis", "primary_powers": "Flight, strength, heat vision", "tactical_vulnerability": "Kryptonite, magic", "signature_gear": "Kryptonian Suit", "tactical_profile": "Direct kinetic engagement", "psychological_dossier": "Altruistic beacon", "primary_adversary": "Lex Luthor", "image": "comics/superman.jpg"},
-    {"id": 13, "alias": "Wonder Woman", "civilian_name": "Diana Prince", "origin_era": "1941", "species_or_origin": "Amazonian Demigod", "classification": "Divine Combatant", "threat_level": "Global Dominator", "affiliation": "Justice League", "base_of_operations": "Themyscira", "primary_powers": "Divine strength, flight", "tactical_vulnerability": "Piercing weapons", "signature_gear": "Lasso of Truth", "tactical_profile": "Classical martial supremacy", "psychological_dossier": "Fierce diplomat", "primary_adversary": "Ares", "image": "comics/wonderwoman.jpg"},
-    {"id": 14, "alias": "The Flash", "civilian_name": "Barry Allen", "origin_era": "1956", "species_or_origin": "Human Mutant", "classification": "Speed Force Conduit", "threat_level": "Chronological Disruptor", "affiliation": "Justice League", "base_of_operations": "Central City", "primary_powers": "Infinite speed, time travel", "tactical_vulnerability": "Absolute cold", "signature_gear": "Friction-Resistant Suit", "tactical_profile": "Relativistic kinetic strikes", "psychological_dossier": "Optimistic scientist", "primary_adversary": "Reverse-Flash", "image": "comics/flash.jpg"},
-    {"id": 15, "alias": "Green Lantern", "civilian_name": "Hal Jordan", "origin_era": "1959", "species_or_origin": "Human", "classification": "Willpower Conduit", "threat_level": "Sector Enforcer", "affiliation": "Green Lantern Corps", "base_of_operations": "Oa", "primary_powers": "Solid-light constructs", "tactical_vulnerability": "Ring depletion", "signature_gear": "Oan Power Ring", "tactical_profile": "Hard-light aviation maneuvers", "psychological_dossier": "Fearless, stubborn", "primary_adversary": "Sinestro", "image": "comics/greenlantern.jpg"},
-    {"id": 16, "alias": "The Joker", "civilian_name": "Unknown", "origin_era": "1940", "species_or_origin": "Human", "classification": "Psychopathic Anarchist", "threat_level": "City-Wide Terror", "affiliation": "Arkham", "base_of_operations": "Gotham City", "primary_powers": "Lethal unpredictability", "tactical_vulnerability": "Physical human limits", "signature_gear": "Joker Venom, Joy Buzzer", "tactical_profile": "Psychological warfare", "psychological_dossier": "Nihilistic chaos agent", "primary_adversary": "Batman", "image": "comics/joker.jpg"},
-    {"id": 17, "alias": "Lex Luthor", "civilian_name": "Alexander Luthor", "origin_era": "1940", "species_or_origin": "Human", "classification": "Apex Industrialist", "threat_level": "Global Extinction", "affiliation": "Legion of Doom", "base_of_operations": "Metropolis", "primary_powers": "12th-level intellect", "tactical_vulnerability": "Massive ego", "signature_gear": "Warsuit", "tactical_profile": "Resource attrition", "psychological_dossier": "Narcissistic xenophobe", "primary_adversary": "Superman", "image": "comics/lexluthor.jpg"},
-    {"id": 18, "alias": "Darkseid", "civilian_name": "Uxas", "origin_era": "1970", "species_or_origin": "New God", "classification": "Cosmic Tyrant", "threat_level": "Multiversal Annihilator", "affiliation": "Apokolips", "base_of_operations": "Apokolips", "primary_powers": "Omega Beams, absolute strength", "tactical_vulnerability": "Radion", "signature_gear": "Mother Boxes", "tactical_profile": "Absolute subjugation", "psychological_dossier": "Tyrannical absolute order", "primary_adversary": "Justice League", "image": "comics/darkseid.jpg"},
-    {"id": 19, "alias": "Reverse-Flash", "civilian_name": "Eobard Thawne", "origin_era": "1963", "species_or_origin": "Future Human", "classification": "Negative Speed Force", "threat_level": "Timeline Corruptor", "affiliation": "Rogues", "base_of_operations": "25th Century", "primary_powers": "Time travel, negative lightning", "tactical_vulnerability": "Paradox erasure", "signature_gear": "Yellow Ring Suit", "tactical_profile": "Temporal assassination", "psychological_dossier": "Obsessive, vindictive fanboy", "primary_adversary": "The Flash", "image": "comics/reverseflash.jpg"},
-    {"id": 20, "alias": "Black Manta", "civilian_name": "David Hyde", "origin_era": "1967", "species_or_origin": "Human", "classification": "Deep-Sea Mercenary", "threat_level": "Oceanic Terrorist", "affiliation": "Legion of Doom", "base_of_operations": "Mobile Submarine", "primary_powers": "Expert hand-to-hand, engineering", "tactical_vulnerability": "Helmet breach underwater", "signature_gear": "Optic Blast Helmet", "tactical_profile": "Aquatic guerrilla warfare", "psychological_dossier": "Vengeful, disciplined", "primary_adversary": "Aquaman", "image": "comics/blackmanta.jpg"},
+    # =========================================================================
+    # UNIVERSE 2: DC COMICS
+    # =========================================================================
+    {
+        "id": 11, "alias": "Batman", "civilian_name": "Bruce Wayne", "origin_era": 1939, 
+        "species_or_origin": "Human", "classification": "Strategic Tactician", 
+        "threat_level": "Global Contingency", "affiliation": "DC / Justice League", 
+        "base_of_operations": "Gotham City", "primary_powers": "Genius intellect, master martial artist", 
+        "tactical_vulnerability": "Mortal biology, no-kill code", "signature_gear": "Utility Belt, Batarangs, Batmobile", 
+        "tactical_profile": "Stealth ambush, psychological terror", "psychological_dossier": "Obsessive, disciplined, traumatized", 
+        "primary_adversary": "The Joker", "image": "comics/batman.jpg"
+    },
+    {
+        "id": 12, "alias": "Superman", "civilian_name": "Clark Kent", "origin_era": 1938, 
+        "species_or_origin": "Kryptonian", "classification": "Solar-Battery Metahuman", 
+        "threat_level": "Planetary Safeguard", "affiliation": "DC / Justice League", 
+        "base_of_operations": "Metropolis", "primary_powers": "Flight, super strength, heat vision, freeze breath", 
+        "tactical_vulnerability": "Kryptonite, red solar radiation, magic", "signature_gear": "Kryptonian Suit", 
+        "tactical_profile": "Direct kinetic engagement, damage containment", "psychological_dossier": "Altruistic beacon of hope, gentle", 
+        "primary_adversary": "Lex Luthor", "image": "comics/superman.jpg"
+    },
+    {
+        "id": 13, "alias": "Wonder Woman", "civilian_name": "Diana Prince", "origin_era": 1941, 
+        "species_or_origin": "Amazonian Demigod", "classification": "Divine Combatant", 
+        "threat_level": "Global Dominator", "affiliation": "DC / Justice League", 
+        "base_of_operations": "Themyscira", "primary_powers": "Divine strength, invulnerability, flight", 
+        "tactical_vulnerability": "Piercing weapons, magical bindings", "signature_gear": "Lasso of Truth, Bracelets of Submission", 
+        "tactical_profile": "Classical martial supremacy, shield bashes", "psychological_dossier": "Fierce diplomat, warrior spirit", 
+        "primary_adversary": "Ares", "image": "comics/wonderwoman.jpg"
+    },
+    {
+        "id": 14, "alias": "The Flash", "civilian_name": "Barry Allen", "origin_era": 1956, 
+        "species_or_origin": "Human Mutant", "classification": "Speed Force Conduit", 
+        "threat_level": "Chronological Disruptor", "affiliation": "DC / Justice League", 
+        "base_of_operations": "Central City", "primary_powers": "Infinite speed, phasing, time travel", 
+        "tactical_vulnerability": "Absolute cold, chronal paradoxes", "signature_gear": "Friction-Resistant Suit", 
+        "tactical_profile": "Relativistic kinetic strikes, tornadoes", "psychological_dossier": "Optimistic scientist, chronically late", 
+        "primary_adversary": "Reverse-Flash", "image": "comics/flash.jpg"
+    },
+    {
+        "id": 15, "alias": "Green Lantern", "civilian_name": "Hal Jordan", "origin_era": 1959, 
+        "species_or_origin": "Human", "classification": "Willpower Conduit", 
+        "threat_level": "Sector Enforcer", "affiliation": "DC / Justice League", 
+        "base_of_operations": "Oa", "primary_powers": "Solid-light constructs, FTL flight", 
+        "tactical_vulnerability": "Ring depletion, extreme fear", "signature_gear": "Oan Power Ring", 
+        "tactical_profile": "Hard-light aviation maneuvers", "psychological_dossier": "Fearless, stubborn test pilot", 
+        "primary_adversary": "Sinestro", "image": "comics/greenlantern.jpg"
+    },
+    {
+        "id": 16, "alias": "The Joker", "civilian_name": "Unknown", "origin_era": 1940, 
+        "species_or_origin": "Human", "classification": "Psychopathic Anarchist", 
+        "threat_level": "City-Wide Terror", "affiliation": "DC / Arkham", 
+        "base_of_operations": "Gotham City", "primary_powers": "Lethal unpredictability, toxic chemistry", 
+        "tactical_vulnerability": "Physical human limits", "signature_gear": "Joker Venom, Joy Buzzer, Razor Cards", 
+        "tactical_profile": "Psychological warfare, mass panic", "psychological_dossier": "Nihilistic chaos agent, obsessed with Batman", 
+        "primary_adversary": "Batman", "image": "comics/joker.jpg"
+    },
+    {
+        "id": 17, "alias": "Lex Luthor", "civilian_name": "Alexander Luthor", "origin_era": 1940, 
+        "species_or_origin": "Human Industrialist", "classification": "Apex Tactician", 
+        "threat_level": "Global Extinction", "affiliation": "DC / Legion of Doom", 
+        "base_of_operations": "Metropolis", "primary_powers": "12th-level intellect, corporate dominance", 
+        "tactical_vulnerability": "Massive ego, obsessive hatred of aliens", "signature_gear": "Kryptonite Warsuit", 
+        "tactical_profile": "Resource attrition, anti-alien weaponry", "psychological_dossier": "Narcissistic xenophobe, humanist supremacist", 
+        "primary_adversary": "Superman", "image": "comics/lexluthor.jpg"
+    },
+    {
+        "id": 18, "alias": "Darkseid", "civilian_name": "Uxas", "origin_era": 1970, 
+        "species_or_origin": "New God", "classification": "Cosmic Tyrant", 
+        "threat_level": "Multiversal Annihilator", "affiliation": "DC / Apokolips", 
+        "base_of_operations": "Apokolips", "primary_powers": "Omega Beams, absolute strength, immortality", 
+        "tactical_vulnerability": "Radion radiation", "signature_gear": "Mother Boxes", 
+        "tactical_profile": "Absolute subjugation, Omega Effect tracking", "psychological_dossier": "Tyrannical absolute order, seeks Anti-Life", 
+        "primary_adversary": "Justice League", "image": "comics/darkseid.jpg"
+    },
+    {
+        "id": 19, "alias": "Reverse-Flash", "civilian_name": "Eobard Thawne", "origin_era": 1963, 
+        "species_or_origin": "Future Human", "classification": "Negative Speed Force", 
+        "threat_level": "Timeline Corruptor", "affiliation": "DC / Rogues", 
+        "base_of_operations": "25th Century", "primary_powers": "Time travel, phasing, negative lightning", 
+        "tactical_vulnerability": "Paradox erasure", "signature_gear": "Yellow Ring Suit", 
+        "tactical_profile": "Temporal assassination, timeline manipulation", "psychological_dossier": "Obsessive, vindictive fanboy", 
+        "primary_adversary": "The Flash", "image": "comics/reverseflash.jpg"
+    },
+    {
+        "id": 20, "alias": "Black Manta", "civilian_name": "David Hyde", "origin_era": 1967, 
+        "species_or_origin": "Human", "classification": "Deep-Sea Mercenary", 
+        "threat_level": "Oceanic Terrorist", "affiliation": "DC / Legion of Doom", 
+        "base_of_operations": "Mobile Submarine", "primary_powers": "Expert hand-to-hand, deep-sea engineering", 
+        "tactical_vulnerability": "Helmet breach underwater", "signature_gear": "Optic Blast Helmet, Twin Blades", 
+        "tactical_profile": "Aquatic guerrilla warfare, brutal melee", "psychological_dossier": "Vengeful, disciplined, hates Atlantis", 
+        "primary_adversary": "Aquaman", "image": "comics/blackmanta.jpg"
+    },
 
-    # ==================== 3. INVINCIBLE UNIVERSE ====================
-    {"id": 21, "alias": "Invincible", "civilian_name": "Mark Grayson", "origin_era": "2003", "species_or_origin": "Viltrumite-Human", "classification": "Kinetic Brawler", "threat_level": "Planetary Vanguard", "affiliation": "GDA", "base_of_operations": "Earth", "primary_powers": "Super strength, interstellar flight", "tactical_vulnerability": "High-frequency sonic resonance", "signature_gear": "GDA Spandex Suit", "tactical_profile": "Kinetic tackling, endurance", "psychological_dossier": "Empathetic, stubborn", "primary_adversary": "Thragg", "image": "comics/invincible.jpg"},
-    {"id": 22, "alias": "Atom Eve", "civilian_name": "Samantha Wilkins", "origin_era": "2003", "species_or_origin": "Engineered Human", "classification": "Matter Transmutator", "threat_level": "Omega-Level Architect", "affiliation": "Teen Team", "base_of_operations": "Earth", "primary_powers": "Sub-atomic transmutation", "tactical_vulnerability": "Mental block on organic matter", "signature_gear": "Resonant Pink Bodysuit", "tactical_profile": "Construct barriers", "psychological_dossier": "Idealistic humanitarian", "primary_adversary": "Doc Seismic", "image": "comics/atomeve.jpg"},
-    {"id": 23, "alias": "Robot", "civilian_name": "Rudy Conners", "origin_era": "2003", "species_or_origin": "Human Clone", "classification": "Cybernetic Hivemind", "threat_level": "Strategic Hegemony", "affiliation": "Guardians", "base_of_operations": "The Pentagon", "primary_powers": "Super-genius, drone networking", "tactical_vulnerability": "Algorithmic inflexibility", "signature_gear": "Autonomous Drone Army", "tactical_profile": "Mathematical attrition", "psychological_dossier": "Coldly utilitarian", "primary_adversary": "Viltrumites", "image": "comics/robot.jpg"},
-    {"id": 24, "alias": "Rex Splode", "civilian_name": "Rex Sloan", "origin_era": "2003", "species_or_origin": "Augmented Human", "classification": "Bio-Kinetic Charger", "threat_level": "Urban Demolitionist", "affiliation": "Guardians", "base_of_operations": "Earth", "primary_powers": "Kinetic explosive charging", "tactical_vulnerability": "Mortal frailty", "signature_gear": "Explosive Discs", "tactical_profile": "Area denial, scattering", "psychological_dossier": "Cocky, secretly selfless", "primary_adversary": "Lizard League", "image": "comics/rexsplode.jpg"},
-    {"id": 25, "alias": "Allen the Alien", "civilian_name": "Allen", "origin_era": "2003", "species_or_origin": "Unopan", "classification": "Super-Soldier", "threat_level": "Cosmic Champion", "affiliation": "Coalition of Planets", "base_of_operations": "Talescria", "primary_powers": "Reactive biological adaptation", "tactical_vulnerability": "Initial kinetic thresholds", "signature_gear": "Void Jumpsuit", "tactical_profile": "Cosmic brawling", "psychological_dossier": "Easygoing, loyal", "primary_adversary": "Viltrum Empire", "image": "comics/allenthealien.jpg"},
-    {"id": 26, "alias": "Omni-Man", "civilian_name": "Nolan Grayson", "origin_era": "2003", "species_or_origin": "Viltrumite", "classification": "Alien Conqueror", "threat_level": "Planetary Subjugator", "affiliation": "Viltrum Empire", "base_of_operations": "Viltrum", "primary_powers": "Near-infinite strength, flight", "tactical_vulnerability": "High-heat stellar plasma", "signature_gear": "Viltrumite Uniform", "tactical_profile": "Lethal anatomical decimation", "psychological_dossier": "Darwinian, conflicted father", "primary_adversary": "Cecil Stedman", "image": "comics/omniman.jpg"},
-    {"id": 27, "alias": "Grand Regent Thragg", "civilian_name": "Thragg", "origin_era": "2010", "species_or_origin": "Apex Viltrumite", "classification": "Galactic Emperor", "threat_level": "Intergalactic Annihilator", "affiliation": "Viltrum Empire", "base_of_operations": "Thraxa", "primary_powers": "Peerless Viltrumite strength", "tactical_vulnerability": "Stellar core temperatures", "signature_gear": "Regent Mantle", "tactical_profile": "Relentless shock warfare", "psychological_dossier": "Ruthlessly pragmatic", "primary_adversary": "Invincible", "image": "comics/thragg.jpg"},
-    {"id": 28, "alias": "Battle Beast", "civilian_name": "Thokk", "origin_era": "2004", "species_or_origin": "Leonine Alien", "classification": "Extraterrestrial Berserker", "threat_level": "Cosmic Combat Apex", "affiliation": "Independent", "base_of_operations": "Arena Worlds", "primary_powers": "God-tier strength, limitless endurance", "tactical_vulnerability": "Addiction to honorable combat", "signature_gear": "Spiked Mace", "tactical_profile": "Savage disembowelment", "psychological_dossier": "Honor-bound zealot", "primary_adversary": "Thragg", "image": "comics/battlebeast.jpg"},
-    {"id": 29, "alias": "Conquest", "civilian_name": "Conquest", "origin_era": "2009", "species_or_origin": "Viltrumite", "classification": "Executioner", "threat_level": "Planetary Executioner", "affiliation": "Viltrum Empire", "base_of_operations": "Viltrum", "primary_powers": "Immense strength, flight", "tactical_vulnerability": "Missing arm limits balance", "signature_gear": "Cybernetic Prosthetic Arm", "tactical_profile": "Sadistic physical dismantling", "psychological_dossier": "Psychopathic bloodlust", "primary_adversary": "Invincible", "image": "comics/conquest.jpg"},
-    {"id": 30, "alias": "Angstrom Levy", "civilian_name": "Angstrom Levy", "origin_era": "2005", "species_or_origin": "Mutated Human", "classification": "Multiversal Traveler", "threat_level": "Dimensional Disruptor", "affiliation": "Independent", "base_of_operations": "Alternate Earths", "primary_powers": "Portal creation, hyper-intellect", "tactical_vulnerability": "Physical frailty before augmentation", "signature_gear": "Trans-dimensional harness", "tactical_profile": "Ambush via portals", "psychological_dossier": "Vengeful, dangerously brilliant", "primary_adversary": "Invincible", "image": "comics/angstromlevy.jpg"},
+    # =========================================================================
+    # UNIVERSE 3: INVINCIBLE
+    # =========================================================================
+    {
+        "id": 21, "alias": "Invincible", "civilian_name": "Mark Grayson", "origin_era": 2003, 
+        "species_or_origin": "Viltrumite-Human Hybrid", "classification": "Kinetic Vanguard", 
+        "threat_level": "Planetary Defender", "affiliation": "Invincible / GDA", 
+        "base_of_operations": "Earth", "primary_powers": "Super strength, interstellar flight", 
+        "tactical_vulnerability": "Equilibrium disruption via high-frequency sound", "signature_gear": "GDA Spandex Suit", 
+        "tactical_profile": "Kinetic brawling, endurance attrition", "psychological_dossier": "Empathetic, stubborn, trauma-resilient", 
+        "primary_adversary": "Thragg", "image": "comics/invincible.jpg"
+    },
+    {
+        "id": 22, "alias": "Atom Eve", "civilian_name": "Samantha Wilkins", "origin_era": 2003, 
+        "species_or_origin": "Engineered Human", "classification": "Matter Transmutator", 
+        "threat_level": "Omega-Level Architect", "affiliation": "Invincible / Teen Team", 
+        "base_of_operations": "Earth", "primary_powers": "Sub-atomic transmutation, energy shields", 
+        "tactical_vulnerability": "Mental block on organic matter", "signature_gear": "Molecular-Resonant Pink Bodysuit", 
+        "tactical_profile": "Construct barriers, environmental weaponization", "psychological_dossier": "Idealistic humanitarian, independent", 
+        "primary_adversary": "Doc Seismic", "image": "comics/atomeve.jpg"
+    },
+    {
+        "id": 23, "alias": "Robot", "civilian_name": "Rudy Conners", "origin_era": 2003, 
+        "species_or_origin": "Human Clone", "classification": "Cybernetic Hivemind", 
+        "threat_level": "Strategic Hegemony", "affiliation": "Invincible / Guardians", 
+        "base_of_operations": "The Pentagon", "primary_powers": "Super-genius, drone networking", 
+        "tactical_vulnerability": "Algorithmic inflexibility, organic host fragility", "signature_gear": "Autonomous Drone Army", 
+        "tactical_profile": "Mathematical attrition, swarm logic", "psychological_dossier": "Coldly utilitarian, logical tyrant", 
+        "primary_adversary": "Invincible", "image": "comics/robot.jpg"
+    },
+    {
+        "id": 24, "alias": "Rex Splode", "civilian_name": "Rex Sloan", "origin_era": 2003, 
+        "species_or_origin": "Augmented Human", "classification": "Bio-Kinetic Charger", 
+        "threat_level": "Urban Demolitionist", "affiliation": "Invincible / Guardians", 
+        "base_of_operations": "Earth", "primary_powers": "Kinetic explosive charging via touch", 
+        "tactical_vulnerability": "Mortal frailty", "signature_gear": "Explosive Discs, Charged Marbles", 
+        "tactical_profile": "Area denial, explosive scattering", "psychological_dossier": "Cocky, secretly selfless and brave", 
+        "primary_adversary": "Lizard League", "image": "comics/rexsplode.jpg"
+    },
+    {
+        "id": 25, "alias": "Allen the Alien", "civilian_name": "Allen", "origin_era": 2003, 
+        "species_or_origin": "Unopan", "classification": "Super-Soldier", 
+        "threat_level": "Cosmic Champion", "affiliation": "Invincible / Coalition", 
+        "base_of_operations": "Talescria", "primary_powers": "Reactive biological adaptation, FTL flight", 
+        "tactical_vulnerability": "Initial kinetic thresholds before evolving", "signature_gear": "Void Jumpsuit", 
+        "tactical_profile": "Cosmic brawling, atmospheric strikes", "psychological_dossier": "Easygoing, loyal, relentless optimist", 
+        "primary_adversary": "Viltrum Empire", "image": "comics/allenthealien.jpg"
+    },
+    {
+        "id": 26, "alias": "Omni-Man", "civilian_name": "Nolan Grayson", "origin_era": 2003, 
+        "species_or_origin": "Viltrumite", "classification": "Alien Conqueror", 
+        "threat_level": "Planetary Subjugator", "affiliation": "Invincible / Viltrum Empire", 
+        "base_of_operations": "Viltrum", "primary_powers": "Near-infinite strength, supersonic flight", 
+        "tactical_vulnerability": "High-frequency sonic resonance", "signature_gear": "Viltrumite Uniform", 
+        "tactical_profile": "Lethal anatomical decimation, blitzing", "psychological_dossier": "Darwinian conqueror, conflicted father", 
+        "primary_adversary": "Cecil Stedman", "image": "comics/omniman.jpg"
+    },
+    {
+        "id": 27, "alias": "Grand Regent Thragg", "civilian_name": "Thragg", "origin_era": 2010, 
+        "species_or_origin": "Apex Viltrumite", "classification": "Galactic Emperor", 
+        "threat_level": "Intergalactic Annihilator", "affiliation": "Invincible / Viltrum Empire", 
+        "base_of_operations": "Thraxa", "primary_powers": "Peerless Viltrumite strength and durability", 
+        "tactical_vulnerability": "Stellar core temperatures", "signature_gear": "Regent Mantle", 
+        "tactical_profile": "Relentless shock warfare, decapitation", "psychological_dossier": "Ruthlessly pragmatic, imperial purist", 
+        "primary_adversary": "Battle Beast", "image": "comics/thragg.jpg"
+    },
+    {
+        "id": 28, "alias": "Battle Beast", "civilian_name": "Thokk", "origin_era": 2004, 
+        "species_or_origin": "Leonine Alien", "classification": "Extraterrestrial Berserker", 
+        "threat_level": "Cosmic Combat Apex", "affiliation": "Invincible / Independent", 
+        "base_of_operations": "Arena Worlds", "primary_powers": "God-tier strength, limitless endurance", 
+        "tactical_vulnerability": "Addiction to honorable combat handicaps", "signature_gear": "Spiked Mace, Broadswords", 
+        "tactical_profile": "Savage disembowelment, melee attrition", "psychological_dossier": "Honor-bound zealot seeking a worthy death", 
+        "primary_adversary": "Thragg", "image": "comics/battlebeast.jpg"
+    },
+    {
+        "id": 29, "alias": "Conquest", "civilian_name": "Conquest", "origin_era": 2009, 
+        "species_or_origin": "Viltrumite", "classification": "Imperial Executioner", 
+        "threat_level": "Planetary Executioner", "affiliation": "Invincible / Viltrum Empire", 
+        "base_of_operations": "Viltrum", "primary_powers": "Immense strength, flight, battle-hardened", 
+        "tactical_vulnerability": "Missing arm and eye limits peripheral vision", "signature_gear": "Cybernetic Prosthetic Arm", 
+        "tactical_profile": "Sadistic physical dismantling", "psychological_dossier": "Psychopathic bloodlust, enjoys murder", 
+        "primary_adversary": "Invincible", "image": "comics/conquest.jpg"
+    },
+    {
+        "id": 30, "alias": "Angstrom Levy", "civilian_name": "Angstrom Levy", "origin_era": 2005, 
+        "species_or_origin": "Mutated Human", "classification": "Multiversal Traveler", 
+        "threat_level": "Dimensional Disruptor", "affiliation": "Invincible / Independent", 
+        "base_of_operations": "Alternate Earths", "primary_powers": "Portal creation across multiverses, hyper-intellect", 
+        "tactical_vulnerability": "Physical frailty before augmentation", "signature_gear": "Trans-dimensional tech harness", 
+        "tactical_profile": "Ambush via portals, summoning alternate variants", "psychological_dossier": "Vengeful, dangerously brilliant, erratic", 
+        "primary_adversary": "Invincible", "image": "comics/angstromlevy.jpg"
+    },
 
-    # ==================== 4. THE BOYS ====================
-    {"id": 31, "alias": "Billy Butcher", "civilian_name": "William Butcher", "origin_era": "2006", "species_or_origin": "Human / Temp-V User", "classification": "Black-Ops Vigilante", "threat_level": "Supe-Killer", "affiliation": "The Boys", "base_of_operations": "New York", "primary_powers": "Temp-V strength, psychological warfare", "tactical_vulnerability": "Self-destructive vengeance", "signature_gear": "Heavy Crowbar", "tactical_profile": "Asymmetric traps", "psychological_dossier": "Charming sociopath", "primary_adversary": "Homelander", "image": "comics/butcher.jpg"},
-    {"id": 32, "alias": "Hughie", "civilian_name": "Hugh Campbell", "origin_era": "2006", "species_or_origin": "Human", "classification": "Civilian Analyst", "threat_level": "Infiltration", "affiliation": "The Boys", "base_of_operations": "New York", "primary_powers": "Keen investigative skills", "tactical_vulnerability": "Anxiety, physical fragility", "signature_gear": "Wiretaps", "tactical_profile": "Surveillance, tech sabotage", "psychological_dossier": "Nervous but resolute", "primary_adversary": "A-Train", "image": "comics/hughie.jpg"},
-    {"id": 33, "alias": "Starlight", "civilian_name": "Annie January", "origin_era": "2006", "species_or_origin": "Compound V Metahuman", "classification": "Energy Projector", "threat_level": "Regional Threat", "affiliation": "The Boys", "base_of_operations": "Vought Tower", "primary_powers": "Bioluminescence, energy blasts", "tactical_vulnerability": "Needs electrical grid to charge", "signature_gear": "Vought Suit", "tactical_profile": "Blinding flashes", "psychological_dossier": "Disillusioned idealist", "primary_adversary": "The Seven", "image": "comics/starlight.jpg"},
-    {"id": 34, "alias": "The Female", "civilian_name": "Kimiko", "origin_era": "2006", "species_or_origin": "Compound V Metahuman", "classification": "Regenerative Brawler", "threat_level": "Lethal Assassin", "affiliation": "The Boys", "base_of_operations": "New York", "primary_powers": "Instant regeneration, agility", "tactical_vulnerability": "Mute, traumatized", "signature_gear": "Concealed Knives", "tactical_profile": "Guerilla ambush, dismemberment", "psychological_dossier": "Fiercely protective", "primary_adversary": "Shining Light Liberation", "image": "comics/kimiko.jpg"},
-    {"id": 35, "alias": "Mother's Milk", "civilian_name": "Marvin T. Milk", "origin_era": "2006", "species_or_origin": "Human", "classification": "Tactical Medic", "threat_level": "Street-Level", "affiliation": "The Boys", "base_of_operations": "New York", "primary_powers": "Military tactics, planning", "tactical_vulnerability": "Severe OCD, family attachments", "signature_gear": "Tactical Vest", "tactical_profile": "Squad coordination", "psychological_dossier": "Compulsive organizer", "primary_adversary": "Soldier Boy", "image": "comics/mm.jpg"},
-    {"id": 36, "alias": "Homelander", "civilian_name": "John Gillman", "origin_era": "2006", "species_or_origin": "Compound V Metahuman", "classification": "Apex Paragon", "threat_level": "Extinction Threat", "affiliation": "The Seven", "base_of_operations": "Vought Tower", "primary_powers": "Godlike strength, laser vision, flight", "tactical_vulnerability": "Narcissistic fragility", "signature_gear": "Flag-Cape Suit", "tactical_profile": "Laser sweeps, intimidation", "psychological_dossier": "Sociopathic man-child", "primary_adversary": "Billy Butcher", "image": "comics/homelander.jpg"},
-    {"id": 37, "alias": "Black Noir", "civilian_name": "Classified", "origin_era": "2006", "species_or_origin": "Compound V Metahuman", "classification": "Stealth Assassin", "threat_level": "Apex Executioner", "affiliation": "The Seven", "base_of_operations": "Vought Tower", "primary_powers": "Enhanced strength, martial mastery", "tactical_vulnerability": "Tree nut allergy", "signature_gear": "Stealth Armor, Katanas", "tactical_profile": "Silent stalking", "psychological_dossier": "Mute, compliant executioner", "primary_adversary": "The Boys", "image": "comics/blacknoir.jpg"},
-    {"id": 38, "alias": "Stormfront", "civilian_name": "Klara Risinger", "origin_era": "2006", "species_or_origin": "Original V-Prototype", "classification": "Electrokinetic", "threat_level": "Ideological Threat", "affiliation": "The Seven", "base_of_operations": "Vought Tower", "primary_powers": "Plasma-lightning, decelerated aging", "tactical_vulnerability": "Unprotected eyes", "signature_gear": "Black Battle Suit", "tactical_profile": "Ranged bombardment", "psychological_dossier": "Unrepentant supremacist", "primary_adversary": "Starlight", "image": "comics/stormfront.jpg"},
-    {"id": 39, "alias": "Soldier Boy", "civilian_name": "Ben", "origin_era": "2006", "species_or_origin": "Original V-Prototype", "classification": "WWII Super-Soldier", "threat_level": "Planetary Kinetic Threat", "affiliation": "Payback", "base_of_operations": "Cryo-Facility", "primary_powers": "Radioactive depowering chest beam", "tactical_vulnerability": "PTSD, Novichok gas", "signature_gear": "Heavy Gold-Plated Shield", "tactical_profile": "Radioactive blasts", "psychological_dossier": "Toxic narcissist", "primary_adversary": "Homelander", "image": "comics/soldierboy.jpg"},
-    {"id": 40, "alias": "A-Train", "civilian_name": "Reggie Franklin", "origin_era": "2006", "species_or_origin": "Compound V Metahuman", "classification": "Speedster", "threat_level": "Supersonic Hazard", "affiliation": "The Seven", "base_of_operations": "Vought Tower", "primary_powers": "Mach-3 speed", "tactical_vulnerability": "V-Addiction, heart failure", "signature_gear": "Track Suit", "tactical_profile": "High-speed body checks", "psychological_dossier": "Insecure, morally weak", "primary_adversary": "Hughie", "image": "comics/atrain.jpg"},
+    # =========================================================================
+    # UNIVERSE 4: THE BOYS
+    # =========================================================================
+    {
+        "id": 31, "alias": "Billy Butcher", "civilian_name": "William Butcher", "origin_era": 2006, 
+        "species_or_origin": "Human / Temp-V User", "classification": "Black-Ops Vigilante", 
+        "threat_level": "Supe-Killer", "affiliation": "The Boys", 
+        "base_of_operations": "New York", "primary_powers": "Temp-V enhanced strength, psychological warfare", 
+        "tactical_vulnerability": "Self-destructive vengeance, Temp-V toxicity", "signature_gear": "Heavy Crowbar, Assault Rifle", 
+        "tactical_profile": "Asymmetric traps, blackmail, brute-force", "psychological_dossier": "Charming sociopath, genocidal hatred of Supes", 
+        "primary_adversary": "Homelander", "image": "comics/butcher.jpg"
+    },
+    {
+        "id": 32, "alias": "Hughie", "civilian_name": "Hugh Campbell", "origin_era": 2006, 
+        "species_or_origin": "Human", "classification": "Civilian Analyst", 
+        "threat_level": "Infiltration / Support", "affiliation": "The Boys", 
+        "base_of_operations": "New York", "primary_powers": "Keen investigative skills, empathy", 
+        "tactical_vulnerability": "Anxiety, physical fragility", "signature_gear": "Wiretaps, Temp-V (Teleportation)", 
+        "tactical_profile": "Surveillance, tech sabotage", "psychological_dossier": "Nervous but resolute, moral anchor", 
+        "primary_adversary": "A-Train", "image": "comics/hughie.jpg"
+    },
+    {
+        "id": 33, "alias": "Starlight", "civilian_name": "Annie January", "origin_era": 2006, 
+        "species_or_origin": "Compound V Metahuman", "classification": "Energy Projector", 
+        "threat_level": "Regional Threat", "affiliation": "The Boys / The Seven", 
+        "base_of_operations": "Vought Tower", "primary_powers": "Bioluminescence, energy blasts, durability", 
+        "tactical_vulnerability": "Needs active electrical grid to charge", "signature_gear": "Vought Spandex Suit", 
+        "tactical_profile": "Blinding flashes, concussive blasts", "psychological_dossier": "Disillusioned idealist, brave whistleblower", 
+        "primary_adversary": "Vought International", "image": "comics/starlight.jpg"
+    },
+    {
+        "id": 34, "alias": "The Female", "civilian_name": "Kimiko", "origin_era": 2006, 
+        "species_or_origin": "Compound V Metahuman", "classification": "Regenerative Brawler", 
+        "threat_level": "Lethal Assassin", "affiliation": "The Boys", 
+        "base_of_operations": "New York", "primary_powers": "Instant cellular regeneration, superhuman agility", 
+        "tactical_vulnerability": "Mute, deeply traumatized", "signature_gear": "Concealed Knives", 
+        "tactical_profile": "Guerilla ambush, visceral dismemberment", "psychological_dossier": "Fiercely protective, silent guardian", 
+        "primary_adversary": "Shining Light Liberation", "image": "comics/kimiko.jpg"
+    },
+    {
+        "id": 35, "alias": "Mother's Milk", "civilian_name": "Marvin T. Milk", "origin_era": 2006, 
+        "species_or_origin": "Human", "classification": "Tactical Medic", 
+        "threat_level": "Street-Level", "affiliation": "The Boys", 
+        "base_of_operations": "New York", "primary_powers": "Military tactics, meticulous planning", 
+        "tactical_vulnerability": "Severe OCD, family attachments", "signature_gear": "Tactical Vest, First Aid", 
+        "tactical_profile": "Squad coordination, logistical planning", "psychological_dossier": "Compulsive organizer, reluctant veteran", 
+        "primary_adversary": "Soldier Boy", "image": "comics/mm.jpg"
+    },
+    {
+        "id": 36, "alias": "Homelander", "civilian_name": "John Gillman", "origin_era": 2006, 
+        "species_or_origin": "Compound V Metahuman", "classification": "Apex Paragon", 
+        "threat_level": "Extinction Threat", "affiliation": "The Boys / The Seven", 
+        "base_of_operations": "Vought Tower", "primary_powers": "Godlike strength, laser vision, flight, durability", 
+        "tactical_vulnerability": "Narcissistic fragility, psychological instability", "signature_gear": "Flag-Cape Suit", 
+        "tactical_profile": "Laser sweeps, psychological intimidation", "psychological_dossier": "Sociopathic man-child, desperate for love", 
+        "primary_adversary": "Billy Butcher", "image": "comics/homelander.jpg"
+    },
+    {
+        "id": 37, "alias": "Black Noir", "civilian_name": "Classified", "origin_era": 2006, 
+        "species_or_origin": "Compound V Metahuman", "classification": "Stealth Assassin", 
+        "threat_level": "Apex Executioner", "affiliation": "The Boys / The Seven", 
+        "base_of_operations": "Vought Tower", "primary_powers": "Enhanced strength, pain immunity, martial mastery", 
+        "tactical_vulnerability": "Tree nut allergy, severe brain damage", "signature_gear": "Stealth Armor, Dual Katanas", 
+        "tactical_profile": "Silent stalking, instant lethal strikes", "psychological_dossier": "Mute, compliant corporate executioner", 
+        "primary_adversary": "The Boys", "image": "comics/blacknoir.jpg"
+    },
+    {
+        "id": 38, "alias": "Stormfront", "civilian_name": "Klara Risinger", "origin_era": 2006, 
+        "species_or_origin": "Original V-Prototype", "classification": "Electrokinetic", 
+        "threat_level": "Planetary Ideological Threat", "affiliation": "The Boys / The Seven", 
+        "base_of_operations": "Vought Tower", "primary_powers": "Plasma-lightning, flight, decelerated aging", 
+        "tactical_vulnerability": "Unprotected human eyes", "signature_gear": "Black Battle Suit", 
+        "tactical_profile": "Ranged bombardment, crowd-control arcs", "psychological_dossier": "Unrepentant supremacist, digital manipulator", 
+        "primary_adversary": "Starlight", "image": "comics/stormfront.jpg"
+    },
+    {
+        "id": 39, "alias": "Soldier Boy", "civilian_name": "Ben", "origin_era": 2006, 
+        "species_or_origin": "Original V-Prototype", "classification": "WWII Super-Soldier", 
+        "threat_level": "Planetary Kinetic Threat", "affiliation": "The Boys / Payback", 
+        "base_of_operations": "Russian Cryo-Facility", "primary_powers": "Massive strength, radioactive depowering chest beam", 
+        "tactical_vulnerability": "PTSD flashbacks, Novichok nerve gas", "signature_gear": "Heavy Gold-Plated Shield", 
+        "tactical_profile": "Blunt trauma beatdowns, radioactive blasts", "psychological_dossier": "Toxic narcissist, outdated 1940s mentality", 
+        "primary_adversary": "Homelander", "image": "comics/soldierboy.jpg"
+    },
+    {
+        "id": 40, "alias": "A-Train", "civilian_name": "Reggie Franklin", "origin_era": 2006, 
+        "species_or_origin": "Compound V Metahuman", "classification": "Speedster", 
+        "threat_level": "Supersonic Hazard", "affiliation": "The Boys / The Seven", 
+        "base_of_operations": "Vought Tower", "primary_powers": "Mach-3 running speed, kinetic reflexes", 
+        "tactical_vulnerability": "Compound V addiction, heart failure", "signature_gear": "Aerodynamic Track Suit", 
+        "tactical_profile": "High-speed body checks, kinetic drags", "psychological_dossier": "Insecure, morally weak, terrified of fading", 
+        "primary_adversary": "Hughie", "image": "comics/atrain.jpg"
+    },
 
-    # ==================== 5. MIGNOLAVERSE ====================
-    {"id": 41, "alias": "Hellboy", "civilian_name": "Anung Un Rama", "origin_era": "1993", "species_or_origin": "Cambion Demon", "classification": "Paranatural Enforcer", "threat_level": "Urban Enforcer", "affiliation": "B.P.R.D.", "base_of_operations": "Connecticut", "primary_powers": "Durability, fire immunity", "tactical_vulnerability": "Destiny compulsion", "signature_gear": "Right Hand of Doom", "tactical_profile": "Blunt-force brawling", "psychological_dossier": "Cynical pragmatist", "primary_adversary": "Rasputin", "image": "comics/hellboy.jpg"},
-    {"id": 42, "alias": "Abe Sapien", "civilian_name": "Langdon Caul", "origin_era": "1994", "species_or_origin": "Ichthyo-Sapiens", "classification": "Amphibious Metahuman", "threat_level": "Field Specialist", "affiliation": "B.P.R.D.", "base_of_operations": "Connecticut", "primary_powers": "Water respiration, psychometry", "tactical_vulnerability": "Dehydration", "signature_gear": "Harpoon Darts", "tactical_profile": "Underwater melee", "psychological_dossier": "Cultured scholar", "primary_adversary": "The Black Flame", "image": "comics/abesapien.jpg"},
-    {"id": 43, "alias": "Liz Sherman", "civilian_name": "Elizabeth Sherman", "origin_era": "1994", "species_or_origin": "Human Mutant", "classification": "Pyrokinetic Nexus", "threat_level": "Apocalyptic Conflagration", "affiliation": "B.P.R.D.", "base_of_operations": "Connecticut", "primary_powers": "Primordial fire generation", "tactical_vulnerability": "Emotional trauma triggers", "signature_gear": "Pyro-Dampening Belt", "tactical_profile": "Wide-area incineration", "psychological_dossier": "Reclusive, haunted", "primary_adversary": "Katha-Hem", "image": "comics/lizsherman.jpg"},
-    {"id": 44, "alias": "Johann Kraus", "civilian_name": "Johann Kraus", "origin_era": "2002", "species_or_origin": "Human Ghost", "classification": "Ectoplasmic Medium", "threat_level": "Ethereal Infiltrator", "affiliation": "B.P.R.D.", "base_of_operations": "Connecticut", "primary_powers": "Possession, intangibility", "tactical_vulnerability": "Suit punctures", "signature_gear": "Containment Suit", "tactical_profile": "Phasing, animating dead", "psychological_dossier": "Longs for human touch", "primary_adversary": "Ogdru Jahad Cults", "image": "comics/johannkraus.jpg"},
-    {"id": 45, "alias": "Lobster Johnson", "civilian_name": "The Lobster", "origin_era": "1999", "species_or_origin": "Human Ghost", "classification": "Vengeful Spirit", "threat_level": "Urban Inquisitor", "affiliation": "Independent", "base_of_operations": "Spectral Realm", "primary_powers": "Spectral manifestation", "tactical_vulnerability": "Holy banishment", "signature_gear": "Twin .45 Pistols, Branding Iron", "tactical_profile": "Dual-pistol gunplay", "psychological_dossier": "Uncompromising pulp crusader", "primary_adversary": "Nazis / Mobsters", "image": "comics/lobsterjohnson.jpg"},
-    {"id": 46, "alias": "Grigori Rasputin", "civilian_name": "Grigori Rasputin", "origin_era": "1994", "species_or_origin": "Human Mystic", "classification": "Resurrected Mystic", "threat_level": "Apocalyptic Summoner", "affiliation": "Ogdru Cult", "base_of_operations": "Arctic Wastelands", "primary_powers": "Dark magic, spirit possession", "tactical_vulnerability": "Physical vessel destruction", "signature_gear": "Gauntlets of Belial", "tactical_profile": "Monster summoning", "psychological_dossier": "Fanatical apocalypticist", "primary_adversary": "Hellboy", "image": "comics/rasputin.jpg"},
-    {"id": 47, "alias": "Karl Kroenen", "civilian_name": "Karl Kroenen", "origin_era": "1994", "species_or_origin": "Cyborg Human", "classification": "Clockwork Assassin", "threat_level": "Martial Murderer", "affiliation": "Thule Society", "base_of_operations": "Hidden Labs", "primary_powers": "Clockwork biology, speed", "tactical_vulnerability": "Heart mechanism destruction", "signature_gear": "Tonfa Blades, Gas Mask", "tactical_profile": "Blinding spin-slashes", "psychological_dossier": "Pathological masochist", "primary_adversary": "B.P.R.D.", "image": "comics/kroenen.jpg"},
-    {"id": 48, "alias": "Baba Yaga", "civilian_name": "Baba Yaga", "origin_era": "1998", "species_or_origin": "Folklore Entity", "classification": "Mythological Witch", "threat_level": "Soul Devourer", "affiliation": "Spirit Realm", "base_of_operations": "Chicken-Legged Hut", "primary_powers": "Dimension weaving, curses", "tactical_vulnerability": "Desecration of graveyard soil", "signature_gear": "Pestle of Flight", "tactical_profile": "Curse-casting, illusions", "psychological_dossier": "Vengeful ancient crone", "primary_adversary": "Hellboy", "image": "comics/babayaga.jpg"},
-    {"id": 49, "alias": "Nimue", "civilian_name": "The Blood Queen", "origin_era": "2008", "species_or_origin": "Human Witch", "classification": "Arthurian Witch", "threat_level": "Goddess of War", "affiliation": "Witches of Britain", "base_of_operations": "Britain", "primary_powers": "Dragon transformation, high magic", "tactical_vulnerability": "Hubris", "signature_gear": "Crown of Ravens", "tactical_profile": "Magical obliteration", "psychological_dossier": "Regal, unhinged", "primary_adversary": "Hellboy", "image": "comics/nimue.jpg"},
-    {"id": 50, "alias": "The Black Flame", "civilian_name": "Landis Craw", "origin_era": "2005", "species_or_origin": "Human CEO", "classification": "Occult Energy Host", "threat_level": "Kaiju Conduit", "affiliation": "Zinco", "base_of_operations": "New York", "primary_powers": "Black plasma fire projection", "tactical_vulnerability": "Pure light magic", "signature_gear": "Skeletal Tunic", "tactical_profile": "Dark fire incineration", "psychological_dossier": "Corporate sociopath", "primary_adversary": "Liz Sherman", "image": "comics/blackflame.jpg"}
+    # =========================================================================
+    # UNIVERSE 5: VALIANT UNIVERSE
+    # =========================================================================
+    {
+        "id": 41, "alias": "Bloodshot", "civilian_name": "Raymond Garrison", "origin_era": 1992, 
+        "species_or_origin": "Nanite-Augmented Human", "classification": "Super-Soldier", 
+        "threat_level": "Army-Breaker", "affiliation": "Valiant / The Renegades", 
+        "base_of_operations": "Nomadic", "primary_powers": "Cellular reconstruction, technopathy, camouflage", 
+        "tactical_vulnerability": "Protein depletion, EMPs", "signature_gear": "Nanite Blood Stream, Firearms", 
+        "tactical_profile": "Unstoppable ballistic breach", "psychological_dossier": "Haunted by false memories, seeking truth", 
+        "primary_adversary": "Project Rising Sun", "image": "comics/bloodshot.jpg"
+    },
+    {
+        "id": 42, "alias": "X-O Manowar", "civilian_name": "Aric of Dacia", "origin_era": 1992, 
+        "species_or_origin": "Visigoth / Alien Symbiote", "classification": "Bio-Armor Host", 
+        "threat_level": "Interstellar Fleet-Destroyer", "affiliation": "Valiant / Unity", 
+        "base_of_operations": "Dacia", "primary_powers": "Energy projection, FTL flight, life-support", 
+        "tactical_vulnerability": "Ancient mindset in modern warfare", "signature_gear": "Shanhara Armor, Visigoth Sword", 
+        "tactical_profile": "Orbital plasma strikes, swordplay", "psychological_dossier": "Fierce warrior king, honor-bound", 
+        "primary_adversary": "The Vine", "image": "comics/xomanowar.jpg"
+    },
+    {
+        "id": 43, "alias": "Ninjak", "civilian_name": "Colin King", "origin_era": 1993, 
+        "species_or_origin": "Human", "classification": "Shinobi Operative", 
+        "threat_level": "Global Assassin", "affiliation": "Valiant / MI-6", 
+        "base_of_operations": "London", "primary_powers": "Martial arts mastery, intellect, espionage", 
+        "tactical_vulnerability": "Mortal biology, emotional isolation", "signature_gear": "Hex-Weave Smart Armor, Tri-Blade", 
+        "tactical_profile": "Silent stealth assassination, gadgets", "psychological_dossier": "Coldly analytical, lethal perfectionist", 
+        "primary_adversary": "Master Darque", "image": "comics/ninjak.jpg"
+    },
+    {
+        "id": 44, "alias": "Livewire", "civilian_name": "Amanda McKee", "origin_era": 1993, 
+        "species_or_origin": "Psiot", "classification": "Technopath", 
+        "threat_level": "Global Hacker", "affiliation": "Valiant / Unity", 
+        "base_of_operations": "Mobile", "primary_powers": "Controlling machines, electromagnetic flight", 
+        "tactical_vulnerability": "Physical human frailty", "signature_gear": "Technopathic interface suit", 
+        "tactical_profile": "Shutting down technology globally", "psychological_dossier": "Determined protector of Psiots, logical", 
+        "primary_adversary": "Toyo Harada", "image": "comics/livewire.jpg"
+    },
+    {
+        "id": 45, "alias": "Sting", "civilian_name": "Peter Stanchek", "origin_era": 1992, 
+        "species_or_origin": "Omega Psiot", "classification": "Telepathic Conduit", 
+        "threat_level": "Planetary Telepath", "affiliation": "Valiant / Renegades", 
+        "base_of_operations": "Mobile", "primary_powers": "Telekinesis, telepathy, activating Psiots", 
+        "tactical_vulnerability": "Drug addiction, extreme mental strain", "signature_gear": "Civilian Streetwear", 
+        "tactical_profile": "Mind-wiping, kinetic crushing", "psychological_dossier": "Troubled, developing god-complex", 
+        "primary_adversary": "Toyo Harada", "image": "comics/peterstanchek.jpg"
+    },
+    {
+        "id": 46, "alias": "Toyo Harada", "civilian_name": "Toyo Harada", "origin_era": 1992, 
+        "species_or_origin": "Omega Psiot", "classification": "Mental Manipulator", 
+        "threat_level": "Global Dictator", "affiliation": "Valiant / Harbinger Foundation", 
+        "base_of_operations": "Tokyo", "primary_powers": "God-tier telekinesis, mind control", 
+        "tactical_vulnerability": "Supreme arrogance", "signature_gear": "Corporate Global Empire", 
+        "tactical_profile": "Absolute mental subjugation", "psychological_dossier": "Well-intentioned extremist, manipulative", 
+        "primary_adversary": "Peter Stanchek", "image": "comics/toyoharada.jpg"
+    },
+    {
+        "id": 47, "alias": "Master Darque", "civilian_name": "Nicodemo Darque", "origin_era": 1992, 
+        "species_or_origin": "Human Mystic", "classification": "Necromantic Sorcerer", 
+        "threat_level": "Planetary Occult Threat", "affiliation": "Valiant / Cult of Darque", 
+        "base_of_operations": "Deadside", "primary_powers": "Death perception, reanimation, dark magic", 
+        "tactical_vulnerability": "Dependence on his twin sister's life force", "signature_gear": "Book of the Dead", 
+        "tactical_profile": "Dark magic artillery, sacrificing souls", "psychological_dossier": "Nihilistic death worshiper", 
+        "primary_adversary": "Ninjak", "image": "comics/darque.jpg"
+    },
+    {
+        "id": 48, "alias": "Project Director", "civilian_name": "Simon Oreck", "origin_era": 1992, 
+        "species_or_origin": "Human", "classification": "Corrupt Bureaucrat", 
+        "threat_level": "Government Conspiracy", "affiliation": "Valiant / Project Rising Sun", 
+        "base_of_operations": "Classified", "primary_powers": "Unlimited military funding, intelligence", 
+        "tactical_vulnerability": "Cowardly, mortal human", "signature_gear": "Nanite control codes", 
+        "tactical_profile": "Remote manipulation, deploying super-soldiers", "psychological_dossier": "Sociopathic scientist, amoral", 
+        "primary_adversary": "Bloodshot", "image": "comics/oreck.jpg"
+    },
+    {
+        "id": 49, "alias": "Commander Trill", "civilian_name": "Trill", "origin_era": 1992, 
+        "species_or_origin": "Alien (The Vine)", "classification": "Alien Commander", 
+        "threat_level": "Interstellar Fleet Commander", "affiliation": "Valiant / The Vine", 
+        "base_of_operations": "Vine Armada", "primary_powers": "Alien physiology, military genius", 
+        "tactical_vulnerability": "Dogmatic zealotry", "signature_gear": "Vine Plasma Rifle", 
+        "tactical_profile": "Orbital bombardments, alien invasions", "psychological_dossier": "Religious fanatic, hates humanity", 
+        "primary_adversary": "X-O Manowar", "image": "comics/trill.jpg"
+    },
+    {
+        "id": 50, "alias": "Roku", "civilian_name": "Angelina Alcott", "origin_era": 2014, 
+        "species_or_origin": "Mystically Altered Human", "classification": "Assassin", 
+        "threat_level": "Elite Assassin", "affiliation": "Valiant / Weaponeer", 
+        "base_of_operations": "Mobile", "primary_powers": "Prehensile razor hair, telepathy, pyrokinesis", 
+        "tactical_vulnerability": "Emotional ties to Ninjak", "signature_gear": "Mystic Prehensile Hair", 
+        "tactical_profile": "Lethal ensnarement, psychological torture", "psychological_dossier": "Brainwashed, lethal, cold", 
+        "primary_adversary": "Ninjak", "image": "comics/roku.jpg"
+    }
 ]
 
 @app.get("/")
