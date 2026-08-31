@@ -9,7 +9,6 @@ app = FastAPI(
     version="4.0.0"
 )
 
-# This is the new line that serves your local 'comics' folder to the frontend
 app.mount("/comics", StaticFiles(directory="comics"), name="comics")
 
 app.add_middleware(
@@ -21,9 +20,6 @@ app.add_middleware(
 )
 
 heroes_db = [
-    # =========================================================================
-    # UNIVERSE 1: MARVEL COMICS (AVENGERS & COSMIC CANON)
-    # =========================================================================
     {
         "id": 1,
         "alias": "Iron Man",
@@ -184,10 +180,6 @@ heroes_db = [
         "psychological_dossier": "Guilt-ridden Catholic vigilante, righteous, masochistic, relentless",
         "image": "comics/daredevil.jpg"
     },
-
-    # =========================================================================
-    # UNIVERSE 2: DC COMICS (JUSTICE LEAGUE CANON)
-    # =========================================================================
     {
         "id": 11,
         "alias": "Batman",
@@ -348,10 +340,6 @@ heroes_db = [
         "psychological_dossier": "Megalomanic xenophobe, fiercely proud humanist, spite-driven visionary",
         "image": "comics/lexluthor.jpg"
     },
-
-    # =========================================================================
-    # UNIVERSE 3: THE INVINCIBLE UNIVERSE (IMAGE / SKYBOUND)
-    # =========================================================================
     {
         "id": 21,
         "alias": "Invincible",
@@ -512,10 +500,6 @@ heroes_db = [
         "psychological_dossier": "Easygoing, optimistic, fiercely loyal champion of interplanetary freedom",
         "image": "comics/allenthealien.jpg"
     },
-
-    # =========================================================================
-    # UNIVERSE 4: THE BOYS UNIVERSE (DYNAMITE / GARTH ENNIS)
-    # =========================================================================
     {
         "id": 31,
         "alias": "Homelander",
@@ -676,10 +660,6 @@ heroes_db = [
         "psychological_dossier": "Desperate for validation, easily manipulated, shallow and cowardly",
         "image": "comics/thedeep.jpg"
     },
-
-    # =========================================================================
-    # UNIVERSE 5: THE MIGNOLAVERSE & DARK HORSE OCCULT
-    # =========================================================================
     {
         "id": 41,
         "alias": "Hellboy",
@@ -840,10 +820,6 @@ heroes_db = [
         "psychological_dossier": "Vengeful ancient crone, deeply spiteful toward Hellboy for shooting her eye out",
         "image": "comics/babayaga.jpg"
     },
-
-    # =========================================================================
-    # UNIVERSE 6: PHILIPPINE RAVELO KOMIKS
-    # =========================================================================
     {
         "id": 51,
         "alias": "Darna",
