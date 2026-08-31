@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omniverse // Issue #1 Metahuman Classified</title>
+    <title>OMNIVERSE COMICS // Multiverse Action Registry</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,56 +12,56 @@
     <header class="comic-masthead">
         <div class="comic-corner-box">
             <span class="cc-price">75¢</span>
-            <span class="cc-code">APPROVED BY THE COMICS CODE AUTHORITY</span>
-            <span class="cc-issue">ISSUE #01</span>
+            <span class="cc-code">COMICS CODE AUTHORITY</span>
+            <span class="cc-issue">VOL. #01</span>
         </div>
 
         <div class="masthead-center">
-            <div class="hero-subhead">★ ALL-NEW, ALL-DIFFERENT METAHUMAN DOSSIERS ★</div>
+            <div class="hero-subhead">★ THE EXPANDED MULTIVERSE ACTION ARCHIVES ★</div>
             <h1 class="comic-logo">OMNIVERSE</h1>
-            <div class="banner-tag">SPECIAL EXPANDED ARCHIVE EDITION</div>
+            <div class="banner-tag">100 CLASSIFIED MULTIVERSAL DOSSIERS</div>
         </div>
 
         <div class="mode-toggles">
-            <button id="view-mode-btn" class="comic-toggle-btn">📖 SWITCH TO CONTINUOUS STRIP</button>
+            <button id="view-mode-btn" class="comic-toggle-btn">📜 SWITCH TO CONTINUOUS STRIP</button>
         </div>
     </header>
 
     <!-- Comic Control Strip -->
     <section class="comic-nav-deck">
         <div class="search-bubble">
-            <span class="speech-tail"></span>
-            <input type="text" id="search-input" placeholder="SEARCH HERO, SECRET ID, OR POWERS..." autocomplete="off">
+            <input type="text" id="search-input" placeholder="🔍 QUERY BY HERO, CIVILIAN IDENTITY, SQUAD, WEAPON OR ABILITIES..." autocomplete="off">
             <button id="reset-btn" class="action-btn">RESET!</button>
         </div>
 
-        <!-- Universe Filters -->
         <div class="squad-tabs">
             <button class="tab-btn active" data-filter="ALL">ALL UNIVERSES</button>
-            <button class="tab-btn" data-filter="MARVEL">MARVEL</button>
+            <button class="tab-btn" data-filter="MARVEL">MARVEL COMICS</button>
             <button class="tab-btn" data-filter="DC">DC COMICS</button>
-            <button class="tab-btn" data-filter="IMAGE">IMAGE / SKYBOUND</button>
-            <button class="tab-btn" data-filter="DARK_HORSE">DARK HORSE</button>
-            <button class="tab-btn" data-filter="DYNAMITE">DYNAMITE</button>
+            <button class="tab-btn" data-filter="INVINCIBLE">INVINCIBLE</button>
+            <button class="tab-btn" data-filter="THE BOYS">THE BOYS</button>
+            <button class="tab-btn" data-filter="MIGNOLAVERSE">MIGNOLAVERSE</button>
+            <button class="tab-btn" data-filter="SPAWN">SPAWN</button>
+            <button class="tab-btn" data-filter="MHA">MY HERO ACADEMIA</button>
+            <button class="tab-btn" data-filter="OPM">ONE-PUNCH MAN</button>
             <button class="tab-btn" data-filter="VALIANT">VALIANT</button>
-            <button class="tab-btn" data-filter="INDIE">INDIE CLASSICS</button>
+            <button class="tab-btn" data-filter="RAVELO KOMIKS">RAVELO KOMIKS</button>
         </div>
     </section>
 
     <!-- Reader Page Container -->
     <main class="comic-book-viewport">
-        
         <!-- Paginator Bar (For Page-by-Page Mode) -->
         <div class="page-flipper" id="page-flipper">
             <button id="prev-page" class="flip-btn">◀ PREVIOUS PAGE</button>
-            <div class="page-indicator" id="page-indicator">PAGE 1 OF ?</div>
+            <div class="page-indicator" id="page-indicator">PAGE 1 OF 20</div>
             <button id="next-page" class="flip-btn">NEXT PAGE ▶</button>
         </div>
 
         <!-- The Actual Comic Sheet Container -->
         <div id="comic-stage" class="comic-page-sheet">
             <div id="loading" class="narrative-box splash-load">
-                💥 LOADING MULTIVERSE STRIP DATASTREAM... HOLD ONTO YOUR CAPE!
+                💥 SUMMONING METAHUMANS ACROSS TIME AND SPACE... HOLD TIGHT!
             </div>
         </div>
     </main>
