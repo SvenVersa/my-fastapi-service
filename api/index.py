@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Optional
 
@@ -7,6 +8,9 @@ app = FastAPI(
     description="Classified dossier registry documenting superhuman entities, cosmic artifacts, and kinetic metahumans.",
     version="4.0.0"
 )
+
+# This is the new line that serves your local 'comics' folder to the frontend
+app.mount("/comics", StaticFiles(directory="comics"), name="comics")
 
 app.add_middleware(
     CORSMiddleware,
