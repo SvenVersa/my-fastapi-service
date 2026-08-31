@@ -78,7 +78,7 @@ const API_URL = "https://my-fastapi-service-beta.vercel.app";
             panel.className = "comic-panel";
             panel.innerHTML = `
                 <div class="panel-header">${hero.alias.toUpperCase()}</div>
-                <div class="panel-image-placeholder">https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcRnZJ6VaYM5Cj5iKrMVyZWHf3g-LyEgu-a1hQ8R1vecWtLm9ro_QJ7YIw_sr-ZfAqGLDz4tTs-dN_F1tLY</div>
+                <img class="panel-image" src="${hero.image}" alt="${hero.alias}">
                 <div class="panel-caption">
                     <strong>ID:</strong> ${hero.civilian_name}<br>
                     <strong>AFFILIATION:</strong> ${hero.affiliation}
