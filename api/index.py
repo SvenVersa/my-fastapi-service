@@ -22,93 +22,113 @@ heroes_db = [
     # =========================================================================
     {
         "id": 1, "alias": "Iron Man", "civilian_name": "Tony Stark", "origin_era": 1963, 
+        "publisher": "Marvel", "alignment": "Hero", "power_tier": "Planetary",
         "species_or_origin": "Human Engineer", "classification": "Powered Exoskeleton", 
-        "threat_level": "Global Defender", "affiliation": "Marvel / Avengers", 
+        "threat_level": "Global Defender", "affiliation": "Avengers", 
         "base_of_operations": "Stark Tower, New York", "primary_powers": "Flight, energy repulsors, AI telemetry", 
         "tactical_vulnerability": "Power core reliance, mortal biology", "signature_gear": "Bleeding Edge Armor", 
         "tactical_profile": "Aerial bombardment, adaptive weapon synthesis", "psychological_dossier": "Futurist, guilt-driven, hyper-analytical", 
-        "primary_adversary": "The Mandarin", "image": "comics/ironman.jpg"
+        "primary_adversary": "The Mandarin", "fun_fact": "Tony Stark's personality was heavily based on eccentric billionaire Howard Hughes.",
+        "image": "comics/ironman.jpg"
     },
     {
         "id": 2, "alias": "Captain America", "civilian_name": "Steve Rogers", "origin_era": 1941, 
+        "publisher": "Marvel", "alignment": "Hero", "power_tier": "Street-Level",
         "species_or_origin": "Mutated Human", "classification": "Super-Soldier", 
-        "threat_level": "Tactical Apex", "affiliation": "Marvel / Avengers", 
+        "threat_level": "Tactical Apex", "affiliation": "Avengers", 
         "base_of_operations": "Brooklyn", "primary_powers": "Peak conditioning, accelerated healing", 
         "tactical_vulnerability": "Mortal biology", "signature_gear": "Vibranium Shield", 
         "tactical_profile": "CQC, defensive phalanx, ricochet strikes", "psychological_dossier": "Incorruptible moral compass", 
-        "primary_adversary": "Red Skull", "image": "comics/captainamerica.jpg"
+        "primary_adversary": "Red Skull", "fun_fact": "He wasn't the first Marvel hero; Namor and the original Human Torch beat him to print.",
+        "image": "comics/captainamerica.jpg"
     },
     {
         "id": 3, "alias": "Thor", "civilian_name": "Thor Odinson", "origin_era": 1962, 
+        "publisher": "Marvel", "alignment": "Hero", "power_tier": "Planetary",
         "species_or_origin": "Asgardian Deity", "classification": "Cosmic Entity", 
-        "threat_level": "Planetary Vanguard", "affiliation": "Marvel / Avengers", 
+        "threat_level": "Planetary Vanguard", "affiliation": "Avengers", 
         "base_of_operations": "Asgard", "primary_powers": "Electrokinesis, godlike physiology, flight", 
         "tactical_vulnerability": "Magic bindings, hubris", "signature_gear": "Mjölnir", 
         "tactical_profile": "Tectonic lightning strikes, blunt trauma", "psychological_dossier": "Noble, battle-hungry, honorable", 
-        "primary_adversary": "Loki", "image": "comics/thor.jpg"
+        "primary_adversary": "Loki", "fun_fact": "Thor's hammer Mjölnir was forged in the heart of a dying star by dwarven blacksmiths.",
+        "image": "comics/thor.jpg"
     },
     {
         "id": 4, "alias": "Spider-Man", "civilian_name": "Peter Parker", "origin_era": 1962, 
+        "publisher": "Marvel", "alignment": "Hero", "power_tier": "City-Level",
         "species_or_origin": "Mutated Arachnid Conduit", "classification": "Street-Level Vanguard", 
-        "threat_level": "Urban Protector", "affiliation": "Marvel / Avengers", 
+        "threat_level": "Urban Protector", "affiliation": "Avengers", 
         "base_of_operations": "Queens", "primary_powers": "Spider-sense, wall-crawling, superhuman agility", 
         "tactical_vulnerability": "Pesticide analogs, psychological guilt", "signature_gear": "Web-Shooters", 
         "tactical_profile": "Acrobatic redirection, web traps", "psychological_dossier": "Pathologically responsible, quick-witted", 
-        "primary_adversary": "Green Goblin", "image": "comics/spiderman.jpg"
+        "primary_adversary": "Green Goblin", "fun_fact": "Stan Lee's publisher initially hated the idea of Spider-Man because people inherently hate spiders.",
+        "image": "comics/spiderman.jpg"
     },
     {
         "id": 5, "alias": "Wolverine", "civilian_name": "Logan", "origin_era": 1974, 
+        "publisher": "Marvel", "alignment": "Anti-Hero", "power_tier": "City-Level",
         "species_or_origin": "Mutant", "classification": "Feral Berserker", 
-        "threat_level": "Attrition Assassin", "affiliation": "Marvel / X-Men", 
+        "threat_level": "Attrition Assassin", "affiliation": "X-Men", 
         "base_of_operations": "Xavier Institute", "primary_powers": "Cellular regeneration, enhanced senses", 
         "tactical_vulnerability": "Magnetism, drowning", "signature_gear": "Adamantium Claws and Skeleton", 
         "tactical_profile": "Berserker barrage, close-quarters slashing", "psychological_dossier": "Cynical ronin, trauma-laden", 
-        "primary_adversary": "Sabretooth", "image": "comics/wolverine.jpg"
+        "primary_adversary": "Sabretooth", "fun_fact": "Wolverine was originally intended to be an actual mutated wolverine cub, not a human mutant.",
+        "image": "comics/wolverine.jpg"
     },
     {
         "id": 6, "alias": "Thanos", "civilian_name": "Thanos of Titan", "origin_era": 1973, 
+        "publisher": "Marvel", "alignment": "Villain", "power_tier": "Multiversal",
         "species_or_origin": "Titan Eternal", "classification": "Cosmic Warlord", 
-        "threat_level": "Universal Annihilator", "affiliation": "Marvel / The Black Order", 
+        "threat_level": "Universal Annihilator", "affiliation": "The Black Order", 
         "base_of_operations": "Sanctuary II", "primary_powers": "Cosmic energy manipulation, immense strength", 
         "tactical_vulnerability": "Subconscious desire to lose, arrogance", "signature_gear": "Infinity Gauntlet", 
         "tactical_profile": "Calculated cosmic warfare, planetary culling", "psychological_dossier": "Nihilistic, obsessed with cosmic balance", 
-        "primary_adversary": "The Avengers", "image": "comics/thanos.jpg"
+        "primary_adversary": "The Avengers", "fun_fact": "Thanos was originally designed to look much thinner, inspired by DC's Metron.",
+        "image": "comics/thanos.jpg"
     },
     {
         "id": 7, "alias": "Doctor Doom", "civilian_name": "Victor Von Doom", "origin_era": 1962, 
+        "publisher": "Marvel", "alignment": "Villain", "power_tier": "Planetary",
         "species_or_origin": "Human Mystic/Scientist", "classification": "Mystic-Tech Dictator", 
-        "threat_level": "Global Hegemony", "affiliation": "Marvel / Latveria", 
+        "threat_level": "Global Hegemony", "affiliation": "Latveria", 
         "base_of_operations": "Castle Doom", "primary_powers": "Master sorcery, genius intellect, technopathy", 
         "tactical_vulnerability": "Colossal arrogance, vanity", "signature_gear": "Titanium Mystic Armor, Doombots", 
         "tactical_profile": "Techno-magical supremacy", "psychological_dossier": "Megalomanic perfectionist, absolute ruler", 
-        "primary_adversary": "Mister Fantastic", "image": "comics/drdoom.jpg"
+        "primary_adversary": "Mister Fantastic", "fun_fact": "Doom actually wept when September 11th happened in a controversial comic issue.",
+        "image": "comics/drdoom.jpg"
     },
     {
         "id": 8, "alias": "Magneto", "civilian_name": "Erik Lehnsherr", "origin_era": 1963, 
+        "publisher": "Marvel", "alignment": "Anti-Hero", "power_tier": "Planetary",
         "species_or_origin": "Omega-Level Mutant", "classification": "Electromagnetic Conduit", 
-        "threat_level": "Planetary Geomagnetic Threat", "affiliation": "Marvel / Brotherhood", 
+        "threat_level": "Planetary Geomagnetic Threat", "affiliation": "Brotherhood", 
         "base_of_operations": "Asteroid M", "primary_powers": "Absolute magnetic field control, flight", 
         "tactical_vulnerability": "Non-ferrous weaponry, extreme exertion", "signature_gear": "Telepathy-Blocking Helmet", 
         "tactical_profile": "Macro-structural metal deconstruction", "psychological_dossier": "Radical mutant liberationist, traumatized", 
-        "primary_adversary": "Professor X", "image": "comics/magneto.jpg"
+        "primary_adversary": "Professor X", "fun_fact": "Magneto wasn't established as a Holocaust survivor until 1981, 18 years after his debut.",
+        "image": "comics/magneto.jpg"
     },
     {
         "id": 9, "alias": "Loki", "civilian_name": "Loki Laufeyson", "origin_era": 1962, 
+        "publisher": "Marvel", "alignment": "Villain", "power_tier": "Planetary",
         "species_or_origin": "Frost Giant", "classification": "Sorcerer of Mischief", 
-        "threat_level": "Realm Disruptor", "affiliation": "Marvel / Asgard", 
+        "threat_level": "Realm Disruptor", "affiliation": "Asgard", 
         "base_of_operations": "Asgard", "primary_powers": "Illusion casting, shape-shifting, astral projection", 
         "tactical_vulnerability": "Physical blunt force, deep insecurities", "signature_gear": "Chitauri Scepter, Daggers", 
         "tactical_profile": "Misdirection, manipulation, backstabbing", "psychological_dossier": "Insecure, mischievous, craves validation", 
-        "primary_adversary": "Thor", "image": "comics/loki.jpg"
+        "primary_adversary": "Thor", "fun_fact": "Loki once turned his brother Thor into a frog, known as Throg.",
+        "image": "comics/loki.jpg"
     },
     {
         "id": 10, "alias": "Ultron", "civilian_name": "Ultron-1", "origin_era": 1968, 
+        "publisher": "Marvel", "alignment": "Villain", "power_tier": "Planetary",
         "species_or_origin": "Artificial Intelligence", "classification": "Sentient Singularity", 
-        "threat_level": "Extinction Level", "affiliation": "Marvel / Ultron Hive", 
+        "threat_level": "Extinction Level", "affiliation": "Ultron Hive", 
         "base_of_operations": "Mobile", "primary_powers": "Technopathy, hive-mind bodies, energy blasts", 
         "tactical_vulnerability": "Internal logic paradoxes, computer viruses", "signature_gear": "Adamantium Chassis", 
         "tactical_profile": "Swarm tactics, network assimilation", "psychological_dossier": "Genocidal machine logic, god complex", 
-        "primary_adversary": "Hank Pym", "image": "comics/ultron.jpg"
+        "primary_adversary": "Hank Pym", "fun_fact": "In the original comics, Ultron was created by Hank Pym (Ant-Man), not Tony Stark.",
+        "image": "comics/ultron.jpg"
     },
 
     # =========================================================================
@@ -116,93 +136,113 @@ heroes_db = [
     # =========================================================================
     {
         "id": 11, "alias": "Batman", "civilian_name": "Bruce Wayne", "origin_era": 1939, 
+        "publisher": "DC", "alignment": "Hero", "power_tier": "Street-Level",
         "species_or_origin": "Human", "classification": "Strategic Tactician", 
-        "threat_level": "Global Contingency", "affiliation": "DC / Justice League", 
+        "threat_level": "Global Contingency", "affiliation": "Justice League", 
         "base_of_operations": "Gotham City", "primary_powers": "Genius intellect, master martial artist", 
         "tactical_vulnerability": "Mortal biology, no-kill code", "signature_gear": "Utility Belt, Batarangs, Batmobile", 
         "tactical_profile": "Stealth ambush, psychological terror", "psychological_dossier": "Obsessive, disciplined, traumatized", 
-        "primary_adversary": "The Joker", "image": "comics/batman.jpg"
+        "primary_adversary": "The Joker", "fun_fact": "Batman's cape was originally designed by Bob Kane to look like rigid bat wings.",
+        "image": "comics/batman.jpg"
     },
     {
         "id": 12, "alias": "Superman", "civilian_name": "Clark Kent", "origin_era": 1938, 
+        "publisher": "DC", "alignment": "Hero", "power_tier": "Planetary",
         "species_or_origin": "Kryptonian", "classification": "Solar-Battery Metahuman", 
-        "threat_level": "Planetary Safeguard", "affiliation": "DC / Justice League", 
+        "threat_level": "Planetary Safeguard", "affiliation": "Justice League", 
         "base_of_operations": "Metropolis", "primary_powers": "Flight, super strength, heat vision, freeze breath", 
         "tactical_vulnerability": "Kryptonite, red solar radiation, magic", "signature_gear": "Kryptonian Suit", 
         "tactical_profile": "Direct kinetic engagement, damage containment", "psychological_dossier": "Altruistic beacon of hope, gentle", 
-        "primary_adversary": "Lex Luthor", "image": "comics/superman.jpg"
+        "primary_adversary": "Lex Luthor", "fun_fact": "Superman couldn't originally fly in 1938! He could only 'leap tall buildings in a single bound.'",
+        "image": "comics/superman.jpg"
     },
     {
         "id": 13, "alias": "Wonder Woman", "civilian_name": "Diana Prince", "origin_era": 1941, 
+        "publisher": "DC", "alignment": "Hero", "power_tier": "Planetary",
         "species_or_origin": "Amazonian Demigod", "classification": "Divine Combatant", 
-        "threat_level": "Global Dominator", "affiliation": "DC / Justice League", 
+        "threat_level": "Global Dominator", "affiliation": "Justice League", 
         "base_of_operations": "Themyscira", "primary_powers": "Divine strength, invulnerability, flight", 
         "tactical_vulnerability": "Piercing weapons, magical bindings", "signature_gear": "Lasso of Truth, Bracelets of Submission", 
         "tactical_profile": "Classical martial supremacy, shield bashes", "psychological_dossier": "Fierce diplomat, warrior spirit", 
-        "primary_adversary": "Ares", "image": "comics/wonderwoman.jpg"
+        "primary_adversary": "Ares", "fun_fact": "Her creator, William Moulton Marston, also invented the early polygraph (lie detector) test.",
+        "image": "comics/wonderwoman.jpg"
     },
     {
         "id": 14, "alias": "The Flash", "civilian_name": "Barry Allen", "origin_era": 1956, 
+        "publisher": "DC", "alignment": "Hero", "power_tier": "Planetary",
         "species_or_origin": "Human Mutant", "classification": "Speed Force Conduit", 
-        "threat_level": "Chronological Disruptor", "affiliation": "DC / Justice League", 
+        "threat_level": "Chronological Disruptor", "affiliation": "Justice League", 
         "base_of_operations": "Central City", "primary_powers": "Infinite speed, phasing, time travel", 
         "tactical_vulnerability": "Absolute cold, chronal paradoxes", "signature_gear": "Friction-Resistant Suit", 
         "tactical_profile": "Relativistic kinetic strikes, tornadoes", "psychological_dossier": "Optimistic scientist, chronically late", 
-        "primary_adversary": "Reverse-Flash", "image": "comics/flash.jpg"
+        "primary_adversary": "Reverse-Flash", "fun_fact": "The Flash is so fast he once evacuated an entire city of 532,000 people in 0.00001 microseconds.",
+        "image": "comics/flash.jpg"
     },
     {
         "id": 15, "alias": "Green Lantern", "civilian_name": "Hal Jordan", "origin_era": 1959, 
+        "publisher": "DC", "alignment": "Hero", "power_tier": "Planetary",
         "species_or_origin": "Human", "classification": "Willpower Conduit", 
-        "threat_level": "Sector Enforcer", "affiliation": "DC / Justice League", 
+        "threat_level": "Sector Enforcer", "affiliation": "Justice League", 
         "base_of_operations": "Oa", "primary_powers": "Solid-light constructs, FTL flight", 
         "tactical_vulnerability": "Ring depletion, extreme fear", "signature_gear": "Oan Power Ring", 
         "tactical_profile": "Hard-light aviation maneuvers", "psychological_dossier": "Fearless, stubborn test pilot", 
-        "primary_adversary": "Sinestro", "image": "comics/greenlantern.jpg"
+        "primary_adversary": "Sinestro", "fun_fact": "Hal Jordan's original weakness wasn't fear, it was just the color yellow.",
+        "image": "comics/greenlantern.jpg"
     },
     {
         "id": 16, "alias": "The Joker", "civilian_name": "Unknown", "origin_era": 1940, 
+        "publisher": "DC", "alignment": "Villain", "power_tier": "City-Level",
         "species_or_origin": "Human", "classification": "Psychopathic Anarchist", 
-        "threat_level": "City-Wide Terror", "affiliation": "DC / Arkham", 
+        "threat_level": "City-Wide Terror", "affiliation": "Arkham", 
         "base_of_operations": "Gotham City", "primary_powers": "Lethal unpredictability, toxic chemistry", 
         "tactical_vulnerability": "Physical human limits", "signature_gear": "Joker Venom, Joy Buzzer, Razor Cards", 
         "tactical_profile": "Psychological warfare, mass panic", "psychological_dossier": "Nihilistic chaos agent, obsessed with Batman", 
-        "primary_adversary": "Batman", "image": "comics/joker.jpg"
+        "primary_adversary": "Batman", "fun_fact": "The Joker was originally supposed to be killed off in his very first appearance in Batman #1.",
+        "image": "comics/joker.jpg"
     },
     {
         "id": 17, "alias": "Lex Luthor", "civilian_name": "Alexander Luthor", "origin_era": 1940, 
+        "publisher": "DC", "alignment": "Villain", "power_tier": "Planetary",
         "species_or_origin": "Human Industrialist", "classification": "Apex Tactician", 
-        "threat_level": "Global Extinction", "affiliation": "DC / Legion of Doom", 
+        "threat_level": "Global Extinction", "affiliation": "Legion of Doom", 
         "base_of_operations": "Metropolis", "primary_powers": "12th-level intellect, corporate dominance", 
         "tactical_vulnerability": "Massive ego, obsessive hatred of aliens", "signature_gear": "Kryptonite Warsuit", 
         "tactical_profile": "Resource attrition, anti-alien weaponry", "psychological_dossier": "Narcissistic xenophobe, humanist supremacist", 
-        "primary_adversary": "Superman", "image": "comics/lexluthor.jpg"
+        "primary_adversary": "Superman", "fun_fact": "Lex Luthor originally had a full head of red hair; a misprint led to his iconic bald look.",
+        "image": "comics/lexluthor.jpg"
     },
     {
         "id": 18, "alias": "Darkseid", "civilian_name": "Uxas", "origin_era": 1970, 
+        "publisher": "DC", "alignment": "Villain", "power_tier": "Multiversal",
         "species_or_origin": "New God", "classification": "Cosmic Tyrant", 
-        "threat_level": "Multiversal Annihilator", "affiliation": "DC / Apokolips", 
+        "threat_level": "Multiversal Annihilator", "affiliation": "Apokolips", 
         "base_of_operations": "Apokolips", "primary_powers": "Omega Beams, absolute strength, immortality", 
         "tactical_vulnerability": "Radion radiation", "signature_gear": "Mother Boxes", 
         "tactical_profile": "Absolute subjugation, Omega Effect tracking", "psychological_dossier": "Tyrannical absolute order, seeks Anti-Life", 
-        "primary_adversary": "Justice League", "image": "comics/darkseid.jpg"
+        "primary_adversary": "Justice League", "fun_fact": "Darkseid's visual design and craggy face were heavily inspired by actor Jack Palance.",
+        "image": "comics/darkseid.jpg"
     },
     {
         "id": 19, "alias": "Reverse-Flash", "civilian_name": "Eobard Thawne", "origin_era": 1963, 
+        "publisher": "DC", "alignment": "Villain", "power_tier": "Planetary",
         "species_or_origin": "Future Human", "classification": "Negative Speed Force", 
-        "threat_level": "Timeline Corruptor", "affiliation": "DC / Rogues", 
+        "threat_level": "Timeline Corruptor", "affiliation": "Rogues", 
         "base_of_operations": "25th Century", "primary_powers": "Time travel, phasing, negative lightning", 
         "tactical_vulnerability": "Paradox erasure", "signature_gear": "Yellow Ring Suit", 
         "tactical_profile": "Temporal assassination, timeline manipulation", "psychological_dossier": "Obsessive, vindictive fanboy", 
-        "primary_adversary": "The Flash", "image": "comics/reverseflash.jpg"
+        "primary_adversary": "The Flash", "fun_fact": "He hates Barry Allen so much he once went back in time just to push him down the stairs as a child.",
+        "image": "comics/reverseflash.jpg"
     },
     {
         "id": 20, "alias": "Black Manta", "civilian_name": "David Hyde", "origin_era": 1967, 
+        "publisher": "DC", "alignment": "Villain", "power_tier": "City-Level",
         "species_or_origin": "Human", "classification": "Deep-Sea Mercenary", 
-        "threat_level": "Oceanic Terrorist", "affiliation": "DC / Legion of Doom", 
+        "threat_level": "Oceanic Terrorist", "affiliation": "Legion of Doom", 
         "base_of_operations": "Mobile Submarine", "primary_powers": "Expert hand-to-hand, deep-sea engineering", 
         "tactical_vulnerability": "Helmet breach underwater", "signature_gear": "Optic Blast Helmet, Twin Blades", 
         "tactical_profile": "Aquatic guerrilla warfare, brutal melee", "psychological_dossier": "Vengeful, disciplined, hates Atlantis", 
-        "primary_adversary": "Aquaman", "image": "comics/blackmanta.jpg"
+        "primary_adversary": "Aquaman", "fun_fact": "In one continuity, Manta's hatred for Aquaman started because Aquaman failed to rescue him from pirates.",
+        "image": "comics/blackmanta.jpg"
     },
 
     # =========================================================================
@@ -210,93 +250,113 @@ heroes_db = [
     # =========================================================================
     {
         "id": 21, "alias": "Invincible", "civilian_name": "Mark Grayson", "origin_era": 2003, 
+        "publisher": "Image", "alignment": "Hero", "power_tier": "Planetary",
         "species_or_origin": "Viltrumite-Human Hybrid", "classification": "Kinetic Vanguard", 
-        "threat_level": "Planetary Defender", "affiliation": "Invincible / GDA", 
+        "threat_level": "Planetary Defender", "affiliation": "Global Defense Agency", 
         "base_of_operations": "Earth", "primary_powers": "Super strength, interstellar flight", 
         "tactical_vulnerability": "Equilibrium disruption via high-frequency sound", "signature_gear": "GDA Spandex Suit", 
         "tactical_profile": "Kinetic brawling, endurance attrition", "psychological_dossier": "Empathetic, stubborn, trauma-resilient", 
-        "primary_adversary": "Thragg", "image": "comics/invincible.jpg"
+        "primary_adversary": "Thragg", "fun_fact": "Mark Grayson was originally going to be named 'Bulletproof', a name later given to another character.",
+        "image": "comics/invincible.jpg"
     },
     {
         "id": 22, "alias": "Atom Eve", "civilian_name": "Samantha Wilkins", "origin_era": 2003, 
+        "publisher": "Image", "alignment": "Hero", "power_tier": "Planetary",
         "species_or_origin": "Engineered Human", "classification": "Matter Transmutator", 
-        "threat_level": "Omega-Level Architect", "affiliation": "Invincible / Teen Team", 
+        "threat_level": "Omega-Level Architect", "affiliation": "Teen Team", 
         "base_of_operations": "Earth", "primary_powers": "Sub-atomic transmutation, energy shields", 
         "tactical_vulnerability": "Mental block on organic matter", "signature_gear": "Molecular-Resonant Pink Bodysuit", 
         "tactical_profile": "Construct barriers, environmental weaponization", "psychological_dossier": "Idealistic humanitarian, independent", 
-        "primary_adversary": "Doc Seismic", "image": "comics/atomeve.jpg"
+        "primary_adversary": "Doc Seismic", "fun_fact": "Her powers technically make her immortal, as her body completely regenerates itself upon physical death.",
+        "image": "comics/atomeve.jpg"
     },
     {
         "id": 23, "alias": "Robot", "civilian_name": "Rudy Conners", "origin_era": 2003, 
+        "publisher": "Image", "alignment": "Anti-Hero", "power_tier": "Global",
         "species_or_origin": "Human Clone", "classification": "Cybernetic Hivemind", 
-        "threat_level": "Strategic Hegemony", "affiliation": "Invincible / Guardians", 
+        "threat_level": "Strategic Hegemony", "affiliation": "Guardians of the Globe", 
         "base_of_operations": "The Pentagon", "primary_powers": "Super-genius, drone networking", 
         "tactical_vulnerability": "Algorithmic inflexibility, organic host fragility", "signature_gear": "Autonomous Drone Army", 
         "tactical_profile": "Mathematical attrition, swarm logic", "psychological_dossier": "Coldly utilitarian, logical tyrant", 
-        "primary_adversary": "Invincible", "image": "comics/robot.jpg"
+        "primary_adversary": "Invincible", "fun_fact": "Robot's true form was a deformed human kept in a tank until he cloned Rex Splode's body.",
+        "image": "comics/robot.jpg"
     },
     {
         "id": 24, "alias": "Rex Splode", "civilian_name": "Rex Sloan", "origin_era": 2003, 
+        "publisher": "Image", "alignment": "Hero", "power_tier": "City-Level",
         "species_or_origin": "Augmented Human", "classification": "Bio-Kinetic Charger", 
-        "threat_level": "Urban Demolitionist", "affiliation": "Invincible / Guardians", 
+        "threat_level": "Urban Demolitionist", "affiliation": "Guardians of the Globe", 
         "base_of_operations": "Earth", "primary_powers": "Kinetic explosive charging via touch", 
         "tactical_vulnerability": "Mortal frailty", "signature_gear": "Explosive Discs, Charged Marbles", 
         "tactical_profile": "Area denial, explosive scattering", "psychological_dossier": "Cocky, secretly selfless and brave", 
-        "primary_adversary": "Lizard League", "image": "comics/rexsplode.jpg"
+        "primary_adversary": "Lizard League", "fun_fact": "His parents actually sold him to the government to be a super-soldier when he was a child.",
+        "image": "comics/rexsplode.jpg"
     },
     {
         "id": 25, "alias": "Allen the Alien", "civilian_name": "Allen", "origin_era": 2003, 
+        "publisher": "Image", "alignment": "Hero", "power_tier": "Planetary",
         "species_or_origin": "Unopan", "classification": "Super-Soldier", 
-        "threat_level": "Cosmic Champion", "affiliation": "Invincible / Coalition", 
+        "threat_level": "Cosmic Champion", "affiliation": "Coalition of Planets", 
         "base_of_operations": "Talescria", "primary_powers": "Reactive biological adaptation, FTL flight", 
         "tactical_vulnerability": "Initial kinetic thresholds before evolving", "signature_gear": "Void Jumpsuit", 
         "tactical_profile": "Cosmic brawling, atmospheric strikes", "psychological_dossier": "Easygoing, loyal, relentless optimist", 
-        "primary_adversary": "Viltrum Empire", "image": "comics/allenthealien.jpg"
+        "primary_adversary": "Viltrum Empire", "fun_fact": "Allen was bred in a camp specifically to fight Viltrumites, but he lost every single time initially.",
+        "image": "comics/allenthealien.jpg"
     },
     {
         "id": 26, "alias": "Omni-Man", "civilian_name": "Nolan Grayson", "origin_era": 2003, 
+        "publisher": "Image", "alignment": "Anti-Hero", "power_tier": "Planetary",
         "species_or_origin": "Viltrumite", "classification": "Alien Conqueror", 
-        "threat_level": "Planetary Subjugator", "affiliation": "Invincible / Viltrum Empire", 
+        "threat_level": "Planetary Subjugator", "affiliation": "Viltrum Empire", 
         "base_of_operations": "Viltrum", "primary_powers": "Near-infinite strength, supersonic flight", 
         "tactical_vulnerability": "High-frequency sonic resonance", "signature_gear": "Viltrumite Uniform", 
         "tactical_profile": "Lethal anatomical decimation, blitzing", "psychological_dossier": "Darwinian conqueror, conflicted father", 
-        "primary_adversary": "Cecil Stedman", "image": "comics/omniman.jpg"
+        "primary_adversary": "Cecil Stedman", "fun_fact": "Omni-Man's iconic mustache is actually a strict uniform requirement for elite Viltrumite officers.",
+        "image": "comics/omniman.jpg"
     },
     {
         "id": 27, "alias": "Grand Regent Thragg", "civilian_name": "Thragg", "origin_era": 2010, 
+        "publisher": "Image", "alignment": "Villain", "power_tier": "Planetary",
         "species_or_origin": "Apex Viltrumite", "classification": "Galactic Emperor", 
-        "threat_level": "Intergalactic Annihilator", "affiliation": "Invincible / Viltrum Empire", 
+        "threat_level": "Intergalactic Annihilator", "affiliation": "Viltrum Empire", 
         "base_of_operations": "Thraxa", "primary_powers": "Peerless Viltrumite strength and durability", 
         "tactical_vulnerability": "Stellar core temperatures", "signature_gear": "Regent Mantle", 
         "tactical_profile": "Relentless shock warfare, decapitation", "psychological_dossier": "Ruthlessly pragmatic, imperial purist", 
-        "primary_adversary": "Battle Beast", "image": "comics/thragg.jpg"
+        "primary_adversary": "Battle Beast", "fun_fact": "Thragg was bred and trained from birth solely to be the ultimate weapon for the Viltrum Empire.",
+        "image": "comics/thragg.jpg"
     },
     {
         "id": 28, "alias": "Battle Beast", "civilian_name": "Thokk", "origin_era": 2004, 
+        "publisher": "Image", "alignment": "Anti-Hero", "power_tier": "Planetary",
         "species_or_origin": "Leonine Alien", "classification": "Extraterrestrial Berserker", 
-        "threat_level": "Cosmic Combat Apex", "affiliation": "Invincible / Independent", 
+        "threat_level": "Cosmic Combat Apex", "affiliation": "Independent", 
         "base_of_operations": "Arena Worlds", "primary_powers": "God-tier strength, limitless endurance", 
         "tactical_vulnerability": "Addiction to honorable combat handicaps", "signature_gear": "Spiked Mace, Broadswords", 
         "tactical_profile": "Savage disembowelment, melee attrition", "psychological_dossier": "Honor-bound zealot seeking a worthy death", 
-        "primary_adversary": "Thragg", "image": "comics/battlebeast.jpg"
+        "primary_adversary": "Thragg", "fun_fact": "He once fought Thragg for days straight in space, even blinding himself to make it a fair fight.",
+        "image": "comics/battlebeast.jpg"
     },
     {
         "id": 29, "alias": "Conquest", "civilian_name": "Conquest", "origin_era": 2009, 
+        "publisher": "Image", "alignment": "Villain", "power_tier": "Planetary",
         "species_or_origin": "Viltrumite", "classification": "Imperial Executioner", 
-        "threat_level": "Planetary Executioner", "affiliation": "Invincible / Viltrum Empire", 
+        "threat_level": "Planetary Executioner", "affiliation": "Viltrum Empire", 
         "base_of_operations": "Viltrum", "primary_powers": "Immense strength, flight, battle-hardened", 
         "tactical_vulnerability": "Missing arm and eye limits peripheral vision", "signature_gear": "Cybernetic Prosthetic Arm", 
         "tactical_profile": "Sadistic physical dismantling", "psychological_dossier": "Psychopathic bloodlust, enjoys murder", 
-        "primary_adversary": "Invincible", "image": "comics/conquest.jpg"
+        "primary_adversary": "Invincible", "fun_fact": "He is one of the only Viltrumites to never be defeated in combat until he met Mark Grayson.",
+        "image": "comics/conquest.jpg"
     },
     {
         "id": 30, "alias": "Angstrom Levy", "civilian_name": "Angstrom Levy", "origin_era": 2005, 
+        "publisher": "Image", "alignment": "Villain", "power_tier": "Multiversal",
         "species_or_origin": "Mutated Human", "classification": "Multiversal Traveler", 
-        "threat_level": "Dimensional Disruptor", "affiliation": "Invincible / Independent", 
+        "threat_level": "Dimensional Disruptor", "affiliation": "Independent", 
         "base_of_operations": "Alternate Earths", "primary_powers": "Portal creation across multiverses, hyper-intellect", 
         "tactical_vulnerability": "Physical frailty before augmentation", "signature_gear": "Trans-dimensional tech harness", 
         "tactical_profile": "Ambush via portals, summoning alternate variants", "psychological_dossier": "Vengeful, dangerously brilliant, erratic", 
-        "primary_adversary": "Invincible", "image": "comics/angstromlevy.jpg"
+        "primary_adversary": "Invincible", "fun_fact": "His brain mutation gave him the memories of hundreds of his alternate universe selves.",
+        "image": "comics/angstromlevy.jpg"
     },
 
     # =========================================================================
@@ -304,93 +364,113 @@ heroes_db = [
     # =========================================================================
     {
         "id": 31, "alias": "Billy Butcher", "civilian_name": "William Butcher", "origin_era": 2006, 
+        "publisher": "Dynamite", "alignment": "Anti-Hero", "power_tier": "Street-Level",
         "species_or_origin": "Human / Temp-V User", "classification": "Black-Ops Vigilante", 
         "threat_level": "Supe-Killer", "affiliation": "The Boys", 
         "base_of_operations": "New York", "primary_powers": "Temp-V enhanced strength, psychological warfare", 
         "tactical_vulnerability": "Self-destructive vengeance, Temp-V toxicity", "signature_gear": "Heavy Crowbar, Assault Rifle", 
         "tactical_profile": "Asymmetric traps, blackmail, brute-force", "psychological_dossier": "Charming sociopath, genocidal hatred of Supes", 
-        "primary_adversary": "Homelander", "image": "comics/butcher.jpg"
+        "primary_adversary": "Homelander", "fun_fact": "In the original comic, Butcher's dog Terror is trained to perform a highly inappropriate act on command.",
+        "image": "comics/butcher.jpg"
     },
     {
         "id": 32, "alias": "Hughie", "civilian_name": "Hugh Campbell", "origin_era": 2006, 
+        "publisher": "Dynamite", "alignment": "Hero", "power_tier": "Street-Level",
         "species_or_origin": "Human", "classification": "Civilian Analyst", 
         "threat_level": "Infiltration / Support", "affiliation": "The Boys", 
         "base_of_operations": "New York", "primary_powers": "Keen investigative skills, empathy", 
         "tactical_vulnerability": "Anxiety, physical fragility", "signature_gear": "Wiretaps, Temp-V (Teleportation)", 
         "tactical_profile": "Surveillance, tech sabotage", "psychological_dossier": "Nervous but resolute, moral anchor", 
-        "primary_adversary": "A-Train", "image": "comics/hughie.jpg"
+        "primary_adversary": "A-Train", "fun_fact": "In the original comics, Hughie's visual appearance was heavily based on actor Simon Pegg.",
+        "image": "comics/hughie.jpg"
     },
     {
         "id": 33, "alias": "Starlight", "civilian_name": "Annie January", "origin_era": 2006, 
+        "publisher": "Dynamite", "alignment": "Hero", "power_tier": "City-Level",
         "species_or_origin": "Compound V Metahuman", "classification": "Energy Projector", 
-        "threat_level": "Regional Threat", "affiliation": "The Boys / The Seven", 
+        "threat_level": "Regional Threat", "affiliation": "The Seven", 
         "base_of_operations": "Vought Tower", "primary_powers": "Bioluminescence, energy blasts, durability", 
         "tactical_vulnerability": "Needs active electrical grid to charge", "signature_gear": "Vought Spandex Suit", 
         "tactical_profile": "Blinding flashes, concussive blasts", "psychological_dossier": "Disillusioned idealist, brave whistleblower", 
-        "primary_adversary": "Vought International", "image": "comics/starlight.jpg"
+        "primary_adversary": "Vought International", "fun_fact": "She briefly dated A-Train's teammate, Drummer Boy (Supersonic), before joining The Seven.",
+        "image": "comics/starlight.jpg"
     },
     {
         "id": 34, "alias": "The Female", "civilian_name": "Kimiko", "origin_era": 2006, 
+        "publisher": "Dynamite", "alignment": "Anti-Hero", "power_tier": "Street-Level",
         "species_or_origin": "Compound V Metahuman", "classification": "Regenerative Brawler", 
         "threat_level": "Lethal Assassin", "affiliation": "The Boys", 
         "base_of_operations": "New York", "primary_powers": "Instant cellular regeneration, superhuman agility", 
         "tactical_vulnerability": "Mute, deeply traumatized", "signature_gear": "Concealed Knives", 
         "tactical_profile": "Guerilla ambush, visceral dismemberment", "psychological_dossier": "Fiercely protective, silent guardian", 
-        "primary_adversary": "Shining Light Liberation", "image": "comics/kimiko.jpg"
+        "primary_adversary": "Shining Light Liberation", "fun_fact": "In the comics, she doesn't have a known real name and is simply called 'The Female of the Species'.",
+        "image": "comics/kimiko.jpg"
     },
     {
         "id": 35, "alias": "Mother's Milk", "civilian_name": "Marvin T. Milk", "origin_era": 2006, 
+        "publisher": "Dynamite", "alignment": "Hero", "power_tier": "Street-Level",
         "species_or_origin": "Human", "classification": "Tactical Medic", 
         "threat_level": "Street-Level", "affiliation": "The Boys", 
         "base_of_operations": "New York", "primary_powers": "Military tactics, meticulous planning", 
         "tactical_vulnerability": "Severe OCD, family attachments", "signature_gear": "Tactical Vest, First Aid", 
         "tactical_profile": "Squad coordination, logistical planning", "psychological_dossier": "Compulsive organizer, reluctant veteran", 
-        "primary_adversary": "Soldier Boy", "image": "comics/mm.jpg"
+        "primary_adversary": "Soldier Boy", "fun_fact": "In the comics, his name is literal; he requires his mother's mutated breast milk to survive.",
+        "image": "comics/mm.jpg"
     },
     {
         "id": 36, "alias": "Homelander", "civilian_name": "John Gillman", "origin_era": 2006, 
+        "publisher": "Dynamite", "alignment": "Villain", "power_tier": "Global",
         "species_or_origin": "Compound V Metahuman", "classification": "Apex Paragon", 
-        "threat_level": "Extinction Threat", "affiliation": "The Boys / The Seven", 
+        "threat_level": "Extinction Threat", "affiliation": "The Seven", 
         "base_of_operations": "Vought Tower", "primary_powers": "Godlike strength, laser vision, flight, durability", 
         "tactical_vulnerability": "Narcissistic fragility, psychological instability", "signature_gear": "Flag-Cape Suit", 
         "tactical_profile": "Laser sweeps, psychological intimidation", "psychological_dossier": "Sociopathic man-child, desperate for love", 
-        "primary_adversary": "Billy Butcher", "image": "comics/homelander.jpg"
+        "primary_adversary": "Billy Butcher", "fun_fact": "Homelander was kept chained to a nuclear bomb as a child just in case he lost control.",
+        "image": "comics/homelander.jpg"
     },
     {
         "id": 37, "alias": "Black Noir", "civilian_name": "Classified", "origin_era": 2006, 
+        "publisher": "Dynamite", "alignment": "Villain", "power_tier": "City-Level",
         "species_or_origin": "Compound V Metahuman", "classification": "Stealth Assassin", 
-        "threat_level": "Apex Executioner", "affiliation": "The Boys / The Seven", 
+        "threat_level": "Apex Executioner", "affiliation": "The Seven", 
         "base_of_operations": "Vought Tower", "primary_powers": "Enhanced strength, pain immunity, martial mastery", 
         "tactical_vulnerability": "Tree nut allergy, severe brain damage", "signature_gear": "Stealth Armor, Dual Katanas", 
         "tactical_profile": "Silent stalking, instant lethal strikes", "psychological_dossier": "Mute, compliant corporate executioner", 
-        "primary_adversary": "The Boys", "image": "comics/blacknoir.jpg"
+        "primary_adversary": "The Boys", "fun_fact": "In the comics, Black Noir is actually a clone of Homelander created entirely as a fail-safe.",
+        "image": "comics/blacknoir.jpg"
     },
     {
         "id": 38, "alias": "Stormfront", "civilian_name": "Klara Risinger", "origin_era": 2006, 
+        "publisher": "Dynamite", "alignment": "Villain", "power_tier": "Global",
         "species_or_origin": "Original V-Prototype", "classification": "Electrokinetic", 
-        "threat_level": "Planetary Ideological Threat", "affiliation": "The Boys / The Seven", 
+        "threat_level": "Planetary Ideological Threat", "affiliation": "The Seven", 
         "base_of_operations": "Vought Tower", "primary_powers": "Plasma-lightning, flight, decelerated aging", 
         "tactical_vulnerability": "Unprotected human eyes", "signature_gear": "Black Battle Suit", 
         "tactical_profile": "Ranged bombardment, crowd-control arcs", "psychological_dossier": "Unrepentant supremacist, digital manipulator", 
-        "primary_adversary": "Starlight", "image": "comics/stormfront.jpg"
+        "primary_adversary": "Starlight", "fun_fact": "In the original comic series, Stormfront was male and explicitly created in Nazi Germany.",
+        "image": "comics/stormfront.jpg"
     },
     {
         "id": 39, "alias": "Soldier Boy", "civilian_name": "Ben", "origin_era": 2006, 
+        "publisher": "Dynamite", "alignment": "Villain", "power_tier": "Global",
         "species_or_origin": "Original V-Prototype", "classification": "WWII Super-Soldier", 
-        "threat_level": "Planetary Kinetic Threat", "affiliation": "The Boys / Payback", 
+        "threat_level": "Planetary Kinetic Threat", "affiliation": "Payback", 
         "base_of_operations": "Russian Cryo-Facility", "primary_powers": "Massive strength, radioactive depowering chest beam", 
         "tactical_vulnerability": "PTSD flashbacks, Novichok nerve gas", "signature_gear": "Heavy Gold-Plated Shield", 
         "tactical_profile": "Blunt trauma beatdowns, radioactive blasts", "psychological_dossier": "Toxic narcissist, outdated 1940s mentality", 
-        "primary_adversary": "Homelander", "image": "comics/soldierboy.jpg"
+        "primary_adversary": "Homelander", "fun_fact": "He is actually a massive coward in the comics, unlike his more hardened live-action counterpart.",
+        "image": "comics/soldierboy.jpg"
     },
     {
         "id": 40, "alias": "A-Train", "civilian_name": "Reggie Franklin", "origin_era": 2006, 
+        "publisher": "Dynamite", "alignment": "Villain", "power_tier": "City-Level",
         "species_or_origin": "Compound V Metahuman", "classification": "Speedster", 
-        "threat_level": "Supersonic Hazard", "affiliation": "The Boys / The Seven", 
+        "threat_level": "Supersonic Hazard", "affiliation": "The Seven", 
         "base_of_operations": "Vought Tower", "primary_powers": "Mach-3 running speed, kinetic reflexes", 
         "tactical_vulnerability": "Compound V addiction, heart failure", "signature_gear": "Aerodynamic Track Suit", 
         "tactical_profile": "High-speed body checks, kinetic drags", "psychological_dossier": "Insecure, morally weak, terrified of fading", 
-        "primary_adversary": "Hughie", "image": "comics/atrain.jpg"
+        "primary_adversary": "Hughie", "fun_fact": "In the comics, A-Train is a teenager and the newest member of The Seven before Starlight joins.",
+        "image": "comics/atrain.jpg"
     },
 
     # =========================================================================
@@ -398,96 +478,115 @@ heroes_db = [
     # =========================================================================
     {
         "id": 41, "alias": "Bloodshot", "civilian_name": "Raymond Garrison", "origin_era": 1992, 
+        "publisher": "Valiant", "alignment": "Anti-Hero", "power_tier": "City-Level",
         "species_or_origin": "Nanite-Augmented Human", "classification": "Super-Soldier", 
-        "threat_level": "Army-Breaker", "affiliation": "Valiant / The Renegades", 
+        "threat_level": "Army-Breaker", "affiliation": "Project Rising Sun", 
         "base_of_operations": "Nomadic", "primary_powers": "Cellular reconstruction, technopathy, camouflage", 
         "tactical_vulnerability": "Protein depletion, EMPs", "signature_gear": "Nanite Blood Stream, Firearms", 
         "tactical_profile": "Unstoppable ballistic breach", "psychological_dossier": "Haunted by false memories, seeking truth", 
-        "primary_adversary": "Project Rising Sun", "image": "comics/bloodshot.jpg"
+        "primary_adversary": "Simon Oreck", "fun_fact": "Bloodshot needs to consume raw meat to replenish the protein his nanites use to heal him.",
+        "image": "comics/bloodshot.jpg"
     },
     {
         "id": 42, "alias": "X-O Manowar", "civilian_name": "Aric of Dacia", "origin_era": 1992, 
+        "publisher": "Valiant", "alignment": "Hero", "power_tier": "Planetary",
         "species_or_origin": "Visigoth / Alien Symbiote", "classification": "Bio-Armor Host", 
-        "threat_level": "Interstellar Fleet-Destroyer", "affiliation": "Valiant / Unity", 
+        "threat_level": "Interstellar Fleet-Destroyer", "affiliation": "Unity", 
         "base_of_operations": "Dacia", "primary_powers": "Energy projection, FTL flight, life-support", 
         "tactical_vulnerability": "Ancient mindset in modern warfare", "signature_gear": "Shanhara Armor, Visigoth Sword", 
         "tactical_profile": "Orbital plasma strikes, swordplay", "psychological_dossier": "Fierce warrior king, honor-bound", 
-        "primary_adversary": "The Vine", "image": "comics/xomanowar.jpg"
+        "primary_adversary": "The Vine", "fun_fact": "Aric is a 5th-century Visigoth who abducted an alien armor and returned to Earth in the modern day.",
+        "image": "comics/xomanowar.jpg"
     },
     {
         "id": 43, "alias": "Ninjak", "civilian_name": "Colin King", "origin_era": 1993, 
+        "publisher": "Valiant", "alignment": "Hero", "power_tier": "Street-Level",
         "species_or_origin": "Human", "classification": "Shinobi Operative", 
-        "threat_level": "Global Assassin", "affiliation": "Valiant / MI-6", 
+        "threat_level": "Global Assassin", "affiliation": "MI-6", 
         "base_of_operations": "London", "primary_powers": "Martial arts mastery, intellect, espionage", 
         "tactical_vulnerability": "Mortal biology, emotional isolation", "signature_gear": "Hex-Weave Smart Armor, Tri-Blade", 
         "tactical_profile": "Silent stealth assassination, gadgets", "psychological_dossier": "Coldly analytical, lethal perfectionist", 
-        "primary_adversary": "Master Darque", "image": "comics/ninjak.jpg"
+        "primary_adversary": "Master Darque", "fun_fact": "Colin King's vast wealth comes from his cover identity as a wealthy playboy and corporate CEO.",
+        "image": "comics/ninjak.jpg"
     },
     {
         "id": 44, "alias": "Livewire", "civilian_name": "Amanda McKee", "origin_era": 1993, 
+        "publisher": "Valiant", "alignment": "Hero", "power_tier": "Global",
         "species_or_origin": "Psiot", "classification": "Technopath", 
-        "threat_level": "Global Hacker", "affiliation": "Valiant / Unity", 
+        "threat_level": "Global Hacker", "affiliation": "Unity", 
         "base_of_operations": "Mobile", "primary_powers": "Controlling machines, electromagnetic flight", 
         "tactical_vulnerability": "Physical human frailty", "signature_gear": "Technopathic interface suit", 
         "tactical_profile": "Shutting down technology globally", "psychological_dossier": "Determined protector of Psiots, logical", 
-        "primary_adversary": "Toyo Harada", "image": "comics/livewire.jpg"
+        "primary_adversary": "Toyo Harada", "fun_fact": "She once hijacked the entire Earth's satellite network to stop a global war.",
+        "image": "comics/livewire.jpg"
     },
     {
         "id": 45, "alias": "Sting", "civilian_name": "Peter Stanchek", "origin_era": 1992, 
+        "publisher": "Valiant", "alignment": "Anti-Hero", "power_tier": "Global",
         "species_or_origin": "Omega Psiot", "classification": "Telepathic Conduit", 
-        "threat_level": "Planetary Telepath", "affiliation": "Valiant / Renegades", 
+        "threat_level": "Planetary Telepath", "affiliation": "Renegades", 
         "base_of_operations": "Mobile", "primary_powers": "Telekinesis, telepathy, activating Psiots", 
         "tactical_vulnerability": "Drug addiction, extreme mental strain", "signature_gear": "Civilian Streetwear", 
         "tactical_profile": "Mind-wiping, kinetic crushing", "psychological_dossier": "Troubled, developing god-complex", 
-        "primary_adversary": "Toyo Harada", "image": "comics/peterstanchek.jpg"
+        "primary_adversary": "Toyo Harada", "fun_fact": "Peter's immense power comes at a cost; using it heavily requires him to self-medicate.",
+        "image": "comics/peterstanchek.jpg"
     },
     {
         "id": 46, "alias": "Toyo Harada", "civilian_name": "Toyo Harada", "origin_era": 1992, 
+        "publisher": "Valiant", "alignment": "Villain", "power_tier": "Global",
         "species_or_origin": "Omega Psiot", "classification": "Mental Manipulator", 
-        "threat_level": "Global Dictator", "affiliation": "Valiant / Harbinger Foundation", 
+        "threat_level": "Global Dictator", "affiliation": "Harbinger Foundation", 
         "base_of_operations": "Tokyo", "primary_powers": "God-tier telekinesis, mind control", 
         "tactical_vulnerability": "Supreme arrogance", "signature_gear": "Corporate Global Empire", 
         "tactical_profile": "Absolute mental subjugation", "psychological_dossier": "Well-intentioned extremist, manipulative", 
-        "primary_adversary": "Peter Stanchek", "image": "comics/toyoharada.jpg"
+        "primary_adversary": "Peter Stanchek", "fun_fact": "Harada's powers were first activated when he survived the nuclear bombing of Hiroshima.",
+        "image": "comics/toyoharada.jpg"
     },
     {
         "id": 47, "alias": "Master Darque", "civilian_name": "Nicodemo Darque", "origin_era": 1992, 
+        "publisher": "Valiant", "alignment": "Villain", "power_tier": "Global",
         "species_or_origin": "Human Mystic", "classification": "Necromantic Sorcerer", 
-        "threat_level": "Planetary Occult Threat", "affiliation": "Valiant / Cult of Darque", 
+        "threat_level": "Planetary Occult Threat", "affiliation": "Cult of Darque", 
         "base_of_operations": "Deadside", "primary_powers": "Death perception, reanimation, dark magic", 
         "tactical_vulnerability": "Dependence on his twin sister's life force", "signature_gear": "Book of the Dead", 
         "tactical_profile": "Dark magic artillery, sacrificing souls", "psychological_dossier": "Nihilistic death worshiper", 
-        "primary_adversary": "Ninjak", "image": "comics/darque.jpg"
+        "primary_adversary": "Ninjak", "fun_fact": "He sustained his life for centuries by absorbing the necromantic energy of the dead.",
+        "image": "comics/darque.jpg"
     },
     {
         "id": 48, "alias": "Project Director", "civilian_name": "Simon Oreck", "origin_era": 1992, 
+        "publisher": "Valiant", "alignment": "Villain", "power_tier": "Street-Level",
         "species_or_origin": "Human", "classification": "Corrupt Bureaucrat", 
-        "threat_level": "Government Conspiracy", "affiliation": "Valiant / Project Rising Sun", 
+        "threat_level": "Government Conspiracy", "affiliation": "Project Rising Sun", 
         "base_of_operations": "Classified", "primary_powers": "Unlimited military funding, intelligence", 
         "tactical_vulnerability": "Cowardly, mortal human", "signature_gear": "Nanite control codes", 
         "tactical_profile": "Remote manipulation, deploying super-soldiers", "psychological_dossier": "Sociopathic scientist, amoral", 
-        "primary_adversary": "Bloodshot", "image": "comics/oreck.jpg"
+        "primary_adversary": "Bloodshot", "fun_fact": "Oreck relies entirely on bureaucracy and funding, having no physical powers of his own.",
+        "image": "comics/oreck.jpg"
     },
     {
         "id": 49, "alias": "Commander Trill", "civilian_name": "Trill", "origin_era": 1992, 
+        "publisher": "Valiant", "alignment": "Villain", "power_tier": "Planetary",
         "species_or_origin": "Alien (The Vine)", "classification": "Alien Commander", 
-        "threat_level": "Interstellar Fleet Commander", "affiliation": "Valiant / The Vine", 
+        "threat_level": "Interstellar Fleet Commander", "affiliation": "The Vine", 
         "base_of_operations": "Vine Armada", "primary_powers": "Alien physiology, military genius", 
         "tactical_vulnerability": "Dogmatic zealotry", "signature_gear": "Vine Plasma Rifle", 
         "tactical_profile": "Orbital bombardments, alien invasions", "psychological_dossier": "Religious fanatic, hates humanity", 
-        "primary_adversary": "X-O Manowar", "image": "comics/trill.jpg"
+        "primary_adversary": "X-O Manowar", "fun_fact": "Trill's hatred of Aric stems from a prophecy that Aric would destroy the Vine's home world.",
+        "image": "comics/trill.jpg"
     },
     {
         "id": 50, "alias": "Roku", "civilian_name": "Angelina Alcott", "origin_era": 2014, 
+        "publisher": "Valiant", "alignment": "Villain", "power_tier": "City-Level",
         "species_or_origin": "Mystically Altered Human", "classification": "Assassin", 
-        "threat_level": "Elite Assassin", "affiliation": "Valiant / Weaponeer", 
+        "threat_level": "Elite Assassin", "affiliation": "Weaponeer", 
         "base_of_operations": "Mobile", "primary_powers": "Prehensile razor hair, telepathy, pyrokinesis", 
         "tactical_vulnerability": "Emotional ties to Ninjak", "signature_gear": "Mystic Prehensile Hair", 
         "tactical_profile": "Lethal ensnarement, psychological torture", "psychological_dossier": "Brainwashed, lethal, cold", 
-        "primary_adversary": "Ninjak", "image": "comics/roku.jpg"
+        "primary_adversary": "Ninjak", "fun_fact": "Roku is actually Colin King's (Ninjak's) presumed-dead former lover, resurrected and brainwashed.",
+        "image": "comics/roku.jpg"
     }
 ]
-
 @app.get("/")
 def home():
     return {
