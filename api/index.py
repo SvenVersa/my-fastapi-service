@@ -585,8 +585,122 @@ heroes_db = [
         "tactical_profile": "Lethal ensnarement, psychological torture", "psychological_dossier": "Brainwashed, lethal, cold", 
         "primary_adversary": "Ninjak", "fun_fact": "Roku is actually Colin King's (Ninjak's) presumed-dead former lover, resurrected and brainwashed.",
         "image": "comics/roku.jpg"
+    }, 
+    # =========================================================================
+    # UNIVERSE 6: MAINSTREAM EXPANSION
+    # =========================================================================
+    {
+        "id": 51, "alias": "The Hulk", "civilian_name": "Bruce Banner", "origin_era": 1962, 
+        "publisher": "Marvel", "alignment": "Hero", "power_tier": "Planetary",
+        "species_or_origin": "Gamma-Mutated Human", "classification": "Gamma Bruiser", 
+        "threat_level": "Extinction Event", "affiliation": "Avengers", 
+        "base_of_operations": "Mobile", "primary_powers": "Limitless rage-based strength, regeneration", 
+        "tactical_vulnerability": "Emotional manipulation, Adamantium", "signature_gear": "Indestructible Purple Pants", 
+        "tactical_profile": "Unstoppable kinetic devastation", "psychological_dossier": "Fractured psyche, immense suppressed anger", 
+        "primary_adversary": "The Leader", "fun_fact": "The Hulk was originally colored grey in his first appearance, but printing issues forced Marvel to change him to green.",
+        "image": "comics/hulk.jpg"
+    },
+    {
+        "id": 52, "alias": "Deadpool", "civilian_name": "Wade Wilson", "origin_era": 1991, 
+        "publisher": "Marvel", "alignment": "Anti-Hero", "power_tier": "Street-Level",
+        "species_or_origin": "Mutate", "classification": "Mercenary", 
+        "threat_level": "Unpredictable Asset", "affiliation": "Independent", 
+        "base_of_operations": "Weapon X Facility", "primary_powers": "Extreme cellular regeneration, fourth-wall awareness", 
+        "tactical_vulnerability": "Complete mental instability", "signature_gear": "Twin Katanas, Dual Pistols", 
+        "tactical_profile": "Chaotic gun-fu, unpredictable acrobatics", "psychological_dossier": "Psychotic, highly talkative, aware he is in a comic book", 
+        "primary_adversary": "Taskmaster", "fun_fact": "His real name, Wade Wilson, started as an inside joke referencing DC's Deathstroke, whose name is Slade Wilson.",
+        "image": "comics/deadpool.jpg"
+    },
+    {
+        "id": 53, "alias": "Harley Quinn", "civilian_name": "Harleen Quinzel", "origin_era": 1992, 
+        "publisher": "DC", "alignment": "Anti-Hero", "power_tier": "Street-Level",
+        "species_or_origin": "Human", "classification": "Acrobatic Brawler", 
+        "threat_level": "Urban Chaos", "affiliation": "Suicide Squad", 
+        "base_of_operations": "Gotham City", "primary_powers": "Olympic-level gymnastics, toxic immunity", 
+        "tactical_vulnerability": "Impulsive behavior, mortal biology", "signature_gear": "Oversized Wooden Mallet, Baseball Bat", 
+        "tactical_profile": "Acrobatic blunt-force trauma", "psychological_dossier": "Former psychiatrist with severe attachment trauma and manic tendencies", 
+        "primary_adversary": "Batman", "fun_fact": "Unlike most characters, Harley didn't debut in a comic book; she was created for Batman: The Animated Series in 1992.",
+        "image": "comics/harley.jpg"
+    },
+    {
+        "id": 54, "alias": "Aquaman", "civilian_name": "Arthur Curry", "origin_era": 1941, 
+        "publisher": "DC", "alignment": "Hero", "power_tier": "Planetary",
+        "species_or_origin": "Atlantean/Human Hybrid", "classification": "Monarch", 
+        "threat_level": "Global Sovereign", "affiliation": "Justice League", 
+        "base_of_operations": "Atlantis", "primary_powers": "Marine telepathy, deep-sea durability, hydrokinesis", 
+        "tactical_vulnerability": "Severe dehydration", "signature_gear": "Trident of Neptune", 
+        "tactical_profile": "Aquatic supremacy, mystical piercing strikes", "psychological_dossier": "Torn between the surface world and his oceanic kingdom", 
+        "primary_adversary": "Black Manta", "fun_fact": "Aquaman's trident is technically a 'pentident' in many iterations because it has five points instead of three.",
+        "image": "comics/aquaman.jpg"
+    },
+    {
+        "id": 55, "alias": "The Deep", "civilian_name": "Kevin Moskowitz", "origin_era": 2006, 
+        "publisher": "Dynamite", "alignment": "Villain", "power_tier": "Street-Level",
+        "species_or_origin": "Compound V Metahuman", "classification": "Aquatic Supe", 
+        "threat_level": "Minimal", "affiliation": "The Seven", 
+        "base_of_operations": "Vought Tower", "primary_powers": "Water-breathing, marine communication, enhanced strength", 
+        "tactical_vulnerability": "Exposed functioning gills on his abdomen, extreme insecurity", "signature_gear": "Vought Wetsuit", 
+        "tactical_profile": "Ineffective aquatic maneuvering", "psychological_dossier": "Deeply insecure, sycophantic, desperately seeks validation", 
+        "primary_adversary": "The Boys", "fun_fact": "In the original comic, The Deep wore an old-school diving helmet and was actually the most mature member of The Seven.",
+        "image": "comics/thedeep.jpg"
+    },
+    {
+        "id": 56, "alias": "Queen Maeve", "civilian_name": "Maggie Shaw", "origin_era": 2006, 
+        "publisher": "Dynamite", "alignment": "Anti-Hero", "power_tier": "City-Level",
+        "species_or_origin": "Compound V Metahuman", "classification": "Bruiser", 
+        "threat_level": "High-Tier Combatant", "affiliation": "The Seven", 
+        "base_of_operations": "Vought Tower", "primary_powers": "Invulnerability, super strength, enhanced agility", 
+        "tactical_vulnerability": "Alcoholism, emotional burnout", "signature_gear": "Silver Sword and Armor", 
+        "tactical_profile": "Direct kinetic engagement, swordplay", "psychological_dossier": "Cynical, burned-out idealist seeking redemption", 
+        "primary_adversary": "Homelander", "fun_fact": "She once broke every bone in her arm trying to stop a falling commercial airplane.",
+        "image": "comics/maeve.jpg"
+    },
+    {
+        "id": 57, "alias": "Monster Girl", "civilian_name": "Amanda", "origin_era": 2003, 
+        "publisher": "Image", "alignment": "Hero", "power_tier": "City-Level",
+        "species_or_origin": "Cursed Human", "classification": "Shapeshifter", 
+        "threat_level": "Urban Heavyweight", "affiliation": "Guardians of the Globe", 
+        "base_of_operations": "The Pentagon", "primary_powers": "Transformation into a massive, super-strong ogre", 
+        "tactical_vulnerability": "De-ages physically every time she transforms", "signature_gear": "None", 
+        "tactical_profile": "Brute-force grappling and crushing", "psychological_dossier": "Chronically frustrated by her child-like human appearance", 
+        "primary_adversary": "The Flaxans", "fun_fact": "Despite looking like a 12-year-old child in her human form, she is actually an adult woman.",
+        "image": "comics/monstergirl.jpg"
+    },
+    {
+        "id": 58, "alias": "The Immortal", "civilian_name": "Abraham Lincoln (Historically)", "origin_era": 2003, 
+        "publisher": "Image", "alignment": "Hero", "power_tier": "City-Level",
+        "species_or_origin": "Prehistoric Human Mutate", "classification": "Paragon", 
+        "threat_level": "Global Guardian", "affiliation": "Guardians of the Globe", 
+        "base_of_operations": "The Pentagon", "primary_powers": "Immortality, flight, super strength", 
+        "tactical_vulnerability": "Decapitation temporarily incapacitates him", "signature_gear": "GDA Spandex Suit", 
+        "tactical_profile": "Aerial brawling, endurance attrition", "psychological_dossier": "Weary, strict, historically detached", 
+        "primary_adversary": "Omni-Man", "fun_fact": "He has lived for thousands of years and was actually Abraham Lincoln during the American Civil War.",
+        "image": "comics/immortal.jpg"
+    },
+    {
+        "id": 59, "alias": "Shadowman", "civilian_name": "Jack Boniface", "origin_era": 1992, 
+        "publisher": "Valiant", "alignment": "Hero", "power_tier": "City-Level",
+        "species_or_origin": "Human Loa-Host", "classification": "Supernatural Guardian", 
+        "threat_level": "Occult Defender", "affiliation": "Independent", 
+        "base_of_operations": "New Orleans", "primary_powers": "Night vision, fear projection, enhanced strength, loa magic", 
+        "tactical_vulnerability": "Daylight, internal struggle with the Loa spirit", "signature_gear": "Shadowman Mask", 
+        "tactical_profile": "Shadow ambushes, occult martial arts", "psychological_dossier": "Reluctant heir to a cursed lineage", 
+        "primary_adversary": "Master Darque", "fun_fact": "Shadowman became so popular in the 90s that Acclaim Entertainment based a hit Nintendo 64 game entirely around him.",
+        "image": "comics/shadowman.jpg"
+    },
+    {
+        "id": 60, "alias": "Faith", "civilian_name": "Faith Herbert", "origin_era": 1992, 
+        "publisher": "Valiant", "alignment": "Hero", "power_tier": "Street-Level",
+        "species_or_origin": "Psiot", "classification": "Telekinetic", 
+        "threat_level": "Support / Rescue", "affiliation": "Harbinger Renegades", 
+        "base_of_operations": "Los Angeles", "primary_powers": "Flight, carrying objects/people via telekinetic 'companion fields'", 
+        "tactical_vulnerability": "Optimistic naivety, mortal biology", "signature_gear": "Zephyr Costume", 
+        "tactical_profile": "Aerial extraction, defensive shielding", "psychological_dossier": "Massive pop-culture geek, purely optimistic", 
+        "primary_adversary": "Toyo Harada", "fun_fact": "Faith is one of the few plus-sized superheroines in mainstream comics, and her powers operate entirely independent of her physical mass.",
+        "image": "comics/faith.jpg"
     }
 ]
+
 @app.get("/")
 def home():
     return {
@@ -603,12 +717,21 @@ def get_heroes():
 @app.get("/heroes/search", response_model=List[dict])
 def search_heroes(
     q: Optional[str] = Query(None, description="Global keyword query across all metahuman features"),
-    affiliation: Optional[str] = Query(None, description="Filter strictly by universe/squad affiliation")
+    affiliation: Optional[str] = Query(None, description="Filter strictly by universe/squad affiliation"),
+    publisher: Optional[str] = Query(None, description="Filter by publisher"),
+    alignment: Optional[str] = Query(None, description="Filter by alignment"),
+    power_tier: Optional[str] = Query(None, description="Filter by power tier")
 ):
     results = heroes_db
+    if publisher:
+        results = [h for h in results if publisher.lower() in h.get('publisher', '').lower()]
+    if alignment:
+        results = [h for h in results if alignment.lower() in h.get('alignment', '').lower()]
+    if power_tier:
+        results = [h for h in results if power_tier.lower() in h.get('power_tier', '').lower()]
     if affiliation:
         a_lower = affiliation.lower()
-        results = [h for h in results if a_lower in h['affiliation'].lower()]
+        results = [h for h in results if a_lower in h.get('affiliation', '').lower()]
     if q:
         q_lower = q.lower()
         filtered = []
