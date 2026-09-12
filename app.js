@@ -26,32 +26,25 @@ let activeFaction = null;
 
 // Publisher Hub Base Art
 const MULTIVERSE_ART = {
-    "Marvel": "comics/marvel_cover.jpg",
-    "DC": "comics/dc_cover.jpg",
-    "Image": "comics/image_cover.jpg",
-    "Dynamite": "comics/dynamite_cover.jpg",
-    "Valiant": "comics/valiant_cover.jpg"
+    "Marvel": "comics/marvel.jpg",
+    "DC": "comics/dc.jpg",
+    "Image": "comics/image.jpg",
+    "Dynamite": "comics/dynamite.jpg",
+    "Valiant": "comics/valiant.jpg"
 };
 
 // Custom Faction Cover Art Map
 const FACTION_ART = {
-    "Avengers": "comics/avengers_cover.jpg",
-    "X-Men": "comics/xmen_cover.jpg",
-    "Fantastic Four": "comics/fantasticfour_cover.jpg",
-    "Guardians of the Galaxy": "comics/gotg_cover.jpg",
-    "Brotherhood": "comics/brotherhood_cover.jpg",  
-    "Ultron Hive": "comics/ultronhive_cover.jpg",
-    "Independent": "comics/independent_cover.jpg",
-    "Justice League": "comics/jl_cover.jpg",
-    "Suicide Squad": "comics/suicidesquad_cover.jpg",
-    "Legion of Doom": "comics/legionofdoom_cover.jpg",
-    "The Boys": "comics/theboys_cover.jpg",
-    "The Seven": "comics/theseven_cover.jpg",
-    "Payback": "comics/payback_cover.jpg",
-    "Global Defense Agency": "comics/gda_cover.jpg",
-    "Guardians of the Globe": "comics/gotg_cover.jpg",
-    "Coalition of Planets": "comics/coalition_cover.jpg",
-    "Viltrum Empire": "comics/viltrum_cover.jpg"
+    "Avengers": "comics/avengers.jpg",
+    "X-Men": "comics/xmen.jpg",
+    "Fantastic Four": "comics/fantasticfour.jpg",  
+    "Justice League": "comics/jl.jpg",
+    "The Boys": "comics/theboys.jpg",
+    "Guardians of the Globe": "comics/gotg.jpg",
+    "Viltrum Empire": "comics/viltrum_cover.jpg",
+    "X-Force": "comics/xforce.jpg",
+    "Valiant Syndicates": "comics/valsyn.jpg",
+    "Valiant Heroes": "comics/valhero.jpg"
 };
 
 const panelShapes = ["panel-large", "panel-tall", "panel-wide", "panel-half", "panel-third"];
@@ -303,17 +296,17 @@ function renderPageMode() {
     prevPageBtn.disabled = currentPage === 1;
     nextPageBtn.disabled = currentPage === totalPages;
 
-    let panelHTML = `<div class="comic-panel-layout">`;
+    // Use a uniform 3-column grid layout so all 15 items fit perfectly on one page
+    let panelHTML = `<div class="comic-panel-layout" style="grid-template-columns: repeat(3, 1fr); grid-auto-rows: 240px;">`;
     pageHeroes.forEach((hero, index) => {
-        const shape = panelShapes[index % panelShapes.length];
         const sfx = sfxWords[index % sfxWords.length];
         const fallbackImg = `https://via.placeholder.com/450x350/ff2525/fffdf0?text=${encodeURIComponent(hero.alias)}`;
 
         panelHTML += `
-            <article class="comic-panel ${shape}" onclick="openDossier(${hero.id})">
+            <article class="comic-panel" style="grid-column: span 1; grid-row: span 1;" onclick="openDossier(${hero.id})">
                 <img src="${hero.image}" alt="${hero.alias}" class="panel-img" onerror="this.onerror=null; this.src='${fallbackImg}';">
                 <div class="panel-caption-box">PANEL #${hero.id < 10 ? '0' + hero.id : hero.id} // ${hero.origin_era}</div>
-                <div class="panel-trivia"><strong>DID YOU KNOW?</strong> ${hero.fun_fact || "No trivia available."}</div>
+                <div class="panel-trivia"><strong>ORIGIN:</strong> ${hero.species_or_origin || "Classified"}</div>
                 <div class="panel-sfx-stamp">${sfx}</div>
                 <div class="panel-speech-balloon">
                     <div class="balloon-title">${hero.alias}</div>
@@ -498,4 +491,17 @@ function startArcadeTicker() {
 document.addEventListener("DOMContentLoaded", () => {
     initComic();
     startArcadeTicker();
+});
+
+const backNavBtn = document.getElementById("back-nav-btn");
+
+backNavBtn.addEventListener("click", () => {
+    AudioFX.playFlip();
+    if (activeFaction) {
+        // If inside a roster, go back to factions
+        renderFactions(activePublisher);
+    } else if (activePublisher) {
+        // If inside factions, go back to publishers hub
+        renderPublishers();
+    }
 });
