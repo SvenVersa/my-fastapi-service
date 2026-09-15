@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OMNIVERSE COMICS // Metahuman Classified</title>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,700&family=Permanent+Marker&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <!-- Fixed the missing 's' in styles.css -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -26,11 +27,12 @@
         </div>
     </header>
 
-    <!-- BREADCRUMB NAVIGATION -->
+    <!-- BREADCRUMB NAVIGATION (Updated with Back Button) -->
     <nav id="breadcrumb-trail" class="breadcrumb-bar hidden">
+        <button id="back-nav-btn" class="action-btn" style="margin-right: 1rem;">◀ BACK</button>
         <span class="crumb" onclick="renderPublishers()">MULTIVERSE</span>
         <span id="crumb-publisher" class="crumb hidden"></span>
-        <span id="crumb-faction" class="cr  umb hidden"></span>
+        <span id="crumb-faction" class="crumb hidden"></span>
     </nav>
 
     <!-- TACTICAL FILTERS (Hidden until Tier 3) -->
@@ -79,6 +81,6 @@
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="app.js"></script>  
 </body>
 </html>

@@ -1444,13 +1444,13 @@ heroes_db = [
 ]
 
 
-@app.get("/")
+@app.get("/api")
 def home():
     return {
         "registry_status": "ONLINE",
         "dossiers_cataloged": len(heroes_db),
         "features_per_entry": 14,
-        "endpoints": ["/heroes", "/heroes/{hero_id}", "/heroes/search"]
+        "endpoints": ["/api/heroes", "/api/heroes/{hero_id}", "/api/heroes/search"]
     }
 
 @app.get("/heroes", response_model=List[dict])

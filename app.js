@@ -1,4 +1,4 @@
-const API_URL = "https://my-fastapi-service-beta.vercel.app";
+const API_URL = "/api";
 
 const comicStage = document.getElementById("comic-stage");
 const searchInput = document.getElementById("search-input");
@@ -493,15 +493,3 @@ document.addEventListener("DOMContentLoaded", () => {
     startArcadeTicker();
 });
 
-const backNavBtn = document.getElementById("back-nav-btn");
-
-backNavBtn.addEventListener("click", () => {
-    AudioFX.playFlip();
-    if (activeFaction) {
-        // If inside a roster, go back to factions
-        renderFactions(activePublisher);
-    } else if (activePublisher) {
-        // If inside factions, go back to publishers hub
-        renderPublishers();
-    }
-});
