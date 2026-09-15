@@ -1453,11 +1453,11 @@ def home():
         "endpoints": ["/api/heroes", "/api/heroes/{hero_id}", "/api/heroes/search"]
     }
 
-@app.get("/heroes", response_model=List[dict])
+@app.get("/api/heroes", response_model=List[dict])
 def get_heroes():
     return heroes_db
 
-@app.get("/heroes/search", response_model=List[dict])
+@app.get("/api/heroes/search", response_model=List[dict])
 def search_heroes(
     q: Optional[str] = Query(None, description="Global keyword query across all metahuman features"),
     affiliation: Optional[str] = Query(None, description="Filter strictly by universe/squad affiliation"),
@@ -1482,51 +1482,10 @@ def search_heroes(
             searchable_text = " ".join([str(v) for v in hero.values()]).lower()
             if q_lower in searchable_text:
                 filtered.append(hero)
-        results = filtered
+            results = filtered
     return results
 
-@app.get("/")
-def home():
-    return {
-        "registry_status": "ONLINE",
-        "dossiers_cataloged": len(heroes_db),
-        "features_per_entry": 14,
-        "endpoints": ["/heroes", "/heroes/{hero_id}", "/heroes/search"]
-    }
-
-@app.get("/heroes", response_model=List[dict])
-def get_heroes():
-    return heroes_db
-
-@app.get("/heroes/search", response_model=List[dict])
-def search_heroes(
-    q: Optional[str] = Query(None, description="Global keyword query across all metahuman features"),
-    affiliation: Optional[str] = Query(None, description="Filter strictly by universe/squad affiliation"),
-    publisher: Optional[str] = Query(None, description="Filter by publisher"),
-    alignment: Optional[str] = Query(None, description="Filter by alignment"),
-    power_tier: Optional[str] = Query(None, description="Filter by power tier")
-):
-    results = heroes_db
-    if publisher:
-        results = [h for h in results if publisher.lower() in h.get('publisher', '').lower()]
-    if alignment:
-        results = [h for h in results if alignment.lower() in h.get('alignment', '').lower()]
-    if power_tier:
-        results = [h for h in results if power_tier.lower() in h.get('power_tier', '').lower()]
-    if affiliation:
-        a_lower = affiliation.lower()
-        results = [h for h in results if a_lower in h.get('affiliation', '').lower()]
-    if q:
-        q_lower = q.lower()
-        filtered = []
-        for hero in results:
-            searchable_text = " ".join([str(v) for v in hero.values()]).lower()
-            if q_lower in searchable_text:
-                filtered.append(hero)
-        results = filtered
-    return results
-
-@app.get("/heroes/{hero_id}", response_model=dict)
+@app.get("/api/heroes/{hero_id}", response_model=dict)
 def get_hero(hero_id: int):
     for hero in heroes_db:
         if hero["id"] == hero_id:
