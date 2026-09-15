@@ -1445,19 +1445,22 @@ heroes_db = [
 
 
 @app.get("/api")
+@app.get("/")
 def home():
     return {
         "registry_status": "ONLINE",
         "dossiers_cataloged": len(heroes_db),
         "features_per_entry": 14,
-        "endpoints": ["/api/heroes", "/api/heroes/{hero_id}", "/api/heroes/search"]
+        "endpoints": ["/api/heroes", "/heroes", "/api/heroes/search", "/heroes/search"]
     }
 
 @app.get("/api/heroes", response_model=List[dict])
+@app.get("/heroes", response_model=List[dict])
 def get_heroes():
     return heroes_db
 
 @app.get("/api/heroes/search", response_model=List[dict])
+@app.get("/heroes/search", response_model=List[dict])
 def search_heroes(
     q: Optional[str] = Query(None, description="Global keyword query across all metahuman features"),
     affiliation: Optional[str] = Query(None, description="Filter strictly by universe/squad affiliation"),
@@ -1482,10 +1485,11 @@ def search_heroes(
             searchable_text = " ".join([str(v) for v in hero.values()]).lower()
             if q_lower in searchable_text:
                 filtered.append(hero)
-            results = filtered
+        results = filtered
     return results
 
 @app.get("/api/heroes/{hero_id}", response_model=dict)
+@app.get("/heroes/{hero_id}", response_model=dict)
 def get_hero(hero_id: int):
     for hero in heroes_db:
         if hero["id"] == hero_id:
