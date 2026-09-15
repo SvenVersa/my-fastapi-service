@@ -492,4 +492,3 @@ document.addEventListener("DOMContentLoaded", () => {
     initComic();
     startArcadeTicker();
 });
-
