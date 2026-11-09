@@ -19,9 +19,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ==========================================
-# 1. AUTHENTICATION & DEPENDENCIES
-# ==========================================
 API_KEY = "omega_level_clearance"
 api_key_schema = APIKeyHeader(name="x-api-key", auto_error=False)
 
@@ -33,9 +30,6 @@ async def verify_api_key(api_key: str = Security(api_key_schema)):
         )
     return api_key
 
-# ==========================================
-# 2. PYDANTIC SCHEMA DEFINITION
-# ==========================================
 class Hero(BaseModel):
     id: int
     alias: str = Field(..., example="Iron Man", min_length=1)
@@ -54,16 +48,12 @@ class Hero(BaseModel):
     psychological_dossier: str
     image: str
     
-    # Optional fields to accommodate variations in entries 59-72
     arch_nemesis: Optional[str] = None
     species_or_origin: Optional[str] = None
     classification: Optional[str] = None
     tactical_profile: Optional[str] = None
     primary_adversary: Optional[str] = None
 
-# ==========================================
-# 3. RAW DATASET (1-72)
-# ==========================================
 heroes_db = [
     {
         "id": 1, "alias": "Iron Man", "civilian_name": "Tony Stark", "origin_era": "1963",
@@ -915,15 +905,7 @@ heroes_db = [
     }
 ]
 
-# ==========================================
-# 4. ON-BOOT VALIDATION ROUTINE
-# ==========================================
 validated_heroes = [Hero(**hero).model_dump() for hero in heroes_db]
-
-
-# ==========================================
-# 5. API ENDPOINTS
-# ==========================================
 
 @app.get("/health")
 def health_check():
